@@ -220,6 +220,7 @@ class Ghost {
     this.active = true;
     this.respawnTimer = 0;
     this.releaseTimer = 0; // Time before ghost can leave house
+    this.hasExitedHouse = false; // Track if ghost has left house
   }
 
   update(deltaTime) {
@@ -251,46 +252,63 @@ class Ghost {
       }
     }
 
-    // If in ghost house and not centered, keep moving toward center
-    if (this.gridY >= 13 && this.gridY <= 15) {
+    // Ghost house exit logic (only if not exited yet)
+    if (!this.hasExitedHouse && this.gridY >= 13 && this.gridY <= 15) {
+      // If not centered, keep moving toward center
       if (this.gridX < 13 && this.direction.y !== 0) {
         this.direction = { x: 1, y: 0 }; // Move right first
       } else if (this.gridX > 14 && this.direction.y !== 0) {
         this.direction = { x: -1, y: 0 }; // Move left first
       }
+      
+      // Mark as exited once out of ghost house area
+      if (this.gridY < 11) {
+        this.hasExitedHouse = true;
+      }
     }
 
-    // Simple AI: move towards Pac-Man with some randomness
-    const dx = pacman.gridX - this.gridX;
-    const dy = pacman.gridY - this.gridY;
+    // AI decision making - check if at grid cell center
+    const currentGridX = Math.floor(this.x / CELL_SIZE);
+    const currentGridY = Math.floor(this.y / CELL_SIZE);
+    const atCenterX = Math.abs(this.x - (currentGridX * CELL_SIZE + CELL_SIZE / 2)) < 2;
+    const atCenterY = Math.abs(this.y - (currentGridY * CELL_SIZE + CELL_SIZE / 2)) < 2;
     
-    // Choose direction at intersections
-    const currentGridX = Math.round(this.x / CELL_SIZE);
-    const currentGridY = Math.round(this.y / CELL_SIZE);
-    
-    if (Math.abs(this.x - currentGridX * CELL_SIZE - CELL_SIZE / 2) < 2 &&
-        Math.abs(this.y - currentGridY * CELL_SIZE - CELL_SIZE / 2) < 2) {
+    // At grid center - time to pick direction (only if exited house)
+    if (atCenterX && atCenterY && this.hasExitedHouse) {
+      // Calculate distances to Pac-Man for scoring
+      const dx = pacman.gridX - currentGridX;
+      const dy = pacman.gridY - currentGridY;
       
-      const possibleDirs = [];
+      // Find all walkable adjacent cells with scores
+      let possibleDirs = [];
+      if (this.isWalkable(currentGridX, currentGridY - 1)) {
+        possibleDirs.push({ x: 0, y: -1, score: -dy }); // Negative because moving up reduces Y
+      }
+      if (this.isWalkable(currentGridX, currentGridY + 1)) {
+        possibleDirs.push({ x: 0, y: 1, score: dy });
+      }
+      if (this.isWalkable(currentGridX - 1, currentGridY)) {
+        possibleDirs.push({ x: -1, y: 0, score: -dx }); // Negative because moving left reduces X
+      }
+      if (this.isWalkable(currentGridX + 1, currentGridY)) {
+        possibleDirs.push({ x: 1, y: 0, score: dx });
+      }
       
-      // Check all directions
-      if (this.isWalkable(currentGridX, currentGridY - 1)) possibleDirs.push({ x: 0, y: -1, score: -dy });
-      if (this.isWalkable(currentGridX, currentGridY + 1)) possibleDirs.push({ x: 0, y: 1, score: dy });
-      if (this.isWalkable(currentGridX - 1, currentGridY)) possibleDirs.push({ x: -1, y: 0, score: -dx });
-      if (this.isWalkable(currentGridX + 1, currentGridY)) possibleDirs.push({ x: 1, y: 0, score: dx });
-      
-      // Don't reverse
-      possibleDirs.filter(d => !(d.x === -this.direction.x && d.y === -this.direction.y));
+      // CRITICAL FIX: Actually assign the filtered result!
+      possibleDirs = possibleDirs.filter(d => 
+        !(d.x === -this.direction.x && d.y === -this.direction.y)
+      );
       
       if (possibleDirs.length > 0) {
-        // Personality-based behavior
+        // Choose direction based on personality
         let chosen;
+        
         if (this.personality === 'aggressive') {
-          // Always chase
+          // Always chase - pick direction closest to Pac-Man
           possibleDirs.sort((a, b) => b.score - a.score);
           chosen = possibleDirs[0];
         } else if (this.personality === 'ambush') {
-          // Mix of chase and random
+          // Mix of chase (70%) and random (30%)
           if (Math.random() < 0.7) {
             possibleDirs.sort((a, b) => b.score - a.score);
             chosen = possibleDirs[0];
@@ -298,10 +316,10 @@ class Ghost {
             chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
           }
         } else if (this.personality === 'random') {
-          // Mostly random
+          // Mostly random movement
           chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
         } else {
-          // Scatter - avoid Pac-Man
+          // Scatter - try to avoid Pac-Man
           possibleDirs.sort((a, b) => a.score - b.score);
           chosen = possibleDirs[0];
         }
@@ -310,51 +328,20 @@ class Ghost {
       }
     }
 
-    // Move
+    // Try to move in current direction
     const nextX = this.x + this.direction.x * this.speed * deltaTime;
     const nextY = this.y + this.direction.y * this.speed * deltaTime;
-    
-    // Check if next position would be in a wall
     const nextGridX = Math.floor(nextX / CELL_SIZE);
     const nextGridY = Math.floor(nextY / CELL_SIZE);
     
-    // Only move if the next position is walkable
+    // Only move if next position is walkable
     if (this.isWalkable(nextGridX, nextGridY)) {
       this.x = nextX;
       this.y = nextY;
-    } else {
-      // Hit a wall - need to pick a new direction
-      const currentGridX = Math.floor(this.x / CELL_SIZE);
-      const currentGridY = Math.floor(this.y / CELL_SIZE);
-      
-      // Snap to grid to avoid getting stuck
-      this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
-      this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
-      
-      // Find available directions
-      const possibleDirs = [];
-      if (this.isWalkable(currentGridX, currentGridY - 1)) possibleDirs.push({ x: 0, y: -1 });
-      if (this.isWalkable(currentGridX, currentGridY + 1)) possibleDirs.push({ x: 0, y: 1 });
-      if (this.isWalkable(currentGridX - 1, currentGridY)) possibleDirs.push({ x: -1, y: 0 });
-      if (this.isWalkable(currentGridX + 1, currentGridY)) possibleDirs.push({ x: 1, y: 0 });
-      
-      // Remove reverse direction
-      const validDirs = possibleDirs.filter(d => 
-        !(d.x === -this.direction.x && d.y === -this.direction.y)
-      );
-      
-      // Pick a random new direction
-      if (validDirs.length > 0) {
-        const chosen = validDirs[Math.floor(Math.random() * validDirs.length)];
-        this.direction = { x: chosen.x, y: chosen.y };
-      } else if (possibleDirs.length > 0) {
-        // If no valid dirs except reverse, just reverse
-        const chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
-        this.direction = { x: chosen.x, y: chosen.y };
-      }
     }
+    // If hitting wall, just don't move - wait for next grid center to pick new direction
 
-    // Wrap around
+    // Wrap around edges
     if (this.x < 0) this.x = canvas.width;
     if (this.x > canvas.width) this.x = 0;
 
