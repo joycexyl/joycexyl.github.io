@@ -250,6 +250,40 @@ class Ghost {
     return possibleDirs;
   }
 
+  // Get perpendicular directions for wall collision (excludes forward AND reverse)
+  getWallCollisionDirections(gridX, gridY) {
+    const dx = pacman.gridX - gridX;
+    const dy = pacman.gridY - gridY;
+    
+    let possibleDirs = [];
+    if (this.isWalkable(gridX, gridY - 1)) {
+      possibleDirs.push({ x: 0, y: -1, score: -dy });
+    }
+    if (this.isWalkable(gridX, gridY + 1)) {
+      possibleDirs.push({ x: 0, y: 1, score: dy });
+    }
+    if (this.isWalkable(gridX - 1, gridY)) {
+      possibleDirs.push({ x: -1, y: 0, score: -dx });
+    }
+    if (this.isWalkable(gridX + 1, gridY)) {
+      possibleDirs.push({ x: 1, y: 0, score: dx });
+    }
+    
+    // Filter out BOTH forward and reverse directions (only keep perpendicular)
+    possibleDirs = possibleDirs.filter(d => {
+      const isReverse = (d.x === -this.direction.x && d.y === -this.direction.y);
+      const isForward = (d.x === this.direction.x && d.y === this.direction.y);
+      return !isReverse && !isForward;
+    });
+    
+    // Fallback: if no perpendicular options (corner case), allow any walkable direction except reverse
+    if (possibleDirs.length === 0) {
+      return this.getDirectionOptions(gridX, gridY);
+    }
+    
+    return possibleDirs;
+  }
+
   // Pick direction based on ghost personality
   pickDirection(possibleDirs) {
     if (possibleDirs.length === 0) return null;
@@ -348,7 +382,7 @@ class Ghost {
       this.x = nextX;
       this.y = nextY;
     } else {
-      // HIT A WALL - Change direction immediately!
+      // HIT A WALL - Change direction immediately to perpendicular!
       const currentGridX = Math.floor(this.x / CELL_SIZE);
       const currentGridY = Math.floor(this.y / CELL_SIZE);
       
@@ -356,8 +390,8 @@ class Ghost {
       this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
       this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
       
-      // Get new direction options and pick based on personality
-      const possibleDirs = this.getDirectionOptions(currentGridX, currentGridY);
+      // Get PERPENDICULAR direction options only (no forward/reverse)
+      const possibleDirs = this.getWallCollisionDirections(currentGridX, currentGridY);
       const chosen = this.pickDirection(possibleDirs);
       if (chosen) {
         this.direction = { x: chosen.x, y: chosen.y };
