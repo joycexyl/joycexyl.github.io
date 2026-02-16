@@ -6,10 +6,21 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+// Resize canvas to fit container while maintaining aspect ratio
+function resizeCanvas() {
+  const container = canvas.parentElement;
+  const aspectRatio = 28 / 31; // Grid width/height ratio
+  const maxWidth = Math.min(800, container.clientWidth);
+  const maxHeight = maxWidth / aspectRatio;
+  
+  canvas.width = maxWidth;
+  canvas.height = maxHeight;
+}
+
 // Game Constants
 const GRID_WIDTH = 28;
 const GRID_HEIGHT = 31;
-const CELL_SIZE = canvas.width / GRID_WIDTH;
+let CELL_SIZE = canvas.width / GRID_WIDTH;
 const FPS = 60;
 
 // Game States
@@ -475,13 +486,16 @@ let roseSpawnTimer = 0;
 let heartShootTimer = 0;
 
 function initGame() {
+  // Update CELL_SIZE in case of resize
+  CELL_SIZE = canvas.width / GRID_WIDTH;
+  
   pacman = new Pacman();
   
   ghosts = [
     new Ghost(12, 14, COLORS.ghosts[0], 'aggressive'),
-    new Ghost(14, 14, COLORS.ghosts[1], 'ambush'),
-    new Ghost(15, 14, COLORS.ghosts[2], 'random'),
-    new Ghost(16, 14, COLORS.ghosts[3], 'scatter')
+    new Ghost(13, 14, COLORS.ghosts[1], 'ambush'),
+    new Ghost(14, 14, COLORS.ghosts[2], 'random'),
+    new Ghost(15, 14, COLORS.ghosts[3], 'scatter')
   ];
   
   rose = new Rose();
@@ -751,6 +765,27 @@ document.getElementById('restartButton').addEventListener('click', restartGame);
 // ===================================
 // Initialize
 // ===================================
+
+// Set up canvas size
+resizeCanvas();
+CELL_SIZE = canvas.width / GRID_WIDTH;
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  resizeCanvas();
+  CELL_SIZE = canvas.width / GRID_WIDTH;
+  // Reinitialize entity positions
+  if (pacman) {
+    pacman.x = pacman.gridX * CELL_SIZE + CELL_SIZE / 2;
+    pacman.y = pacman.gridY * CELL_SIZE + CELL_SIZE / 2;
+    pacman.radius = CELL_SIZE * 0.4;
+  }
+  ghosts.forEach(ghost => {
+    ghost.x = ghost.gridX * CELL_SIZE + CELL_SIZE / 2;
+    ghost.y = ghost.gridY * CELL_SIZE + CELL_SIZE / 2;
+    ghost.radius = CELL_SIZE * 0.4;
+  });
+});
 
 initGame();
 render();
