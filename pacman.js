@@ -311,8 +311,48 @@ class Ghost {
     }
 
     // Move
-    this.x += this.direction.x * this.speed * deltaTime;
-    this.y += this.direction.y * this.speed * deltaTime;
+    const nextX = this.x + this.direction.x * this.speed * deltaTime;
+    const nextY = this.y + this.direction.y * this.speed * deltaTime;
+    
+    // Check if next position would be in a wall
+    const nextGridX = Math.floor(nextX / CELL_SIZE);
+    const nextGridY = Math.floor(nextY / CELL_SIZE);
+    
+    // Only move if the next position is walkable
+    if (this.isWalkable(nextGridX, nextGridY)) {
+      this.x = nextX;
+      this.y = nextY;
+    } else {
+      // Hit a wall - need to pick a new direction
+      const currentGridX = Math.floor(this.x / CELL_SIZE);
+      const currentGridY = Math.floor(this.y / CELL_SIZE);
+      
+      // Snap to grid to avoid getting stuck
+      this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
+      this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
+      
+      // Find available directions
+      const possibleDirs = [];
+      if (this.isWalkable(currentGridX, currentGridY - 1)) possibleDirs.push({ x: 0, y: -1 });
+      if (this.isWalkable(currentGridX, currentGridY + 1)) possibleDirs.push({ x: 0, y: 1 });
+      if (this.isWalkable(currentGridX - 1, currentGridY)) possibleDirs.push({ x: -1, y: 0 });
+      if (this.isWalkable(currentGridX + 1, currentGridY)) possibleDirs.push({ x: 1, y: 0 });
+      
+      // Remove reverse direction
+      const validDirs = possibleDirs.filter(d => 
+        !(d.x === -this.direction.x && d.y === -this.direction.y)
+      );
+      
+      // Pick a random new direction
+      if (validDirs.length > 0) {
+        const chosen = validDirs[Math.floor(Math.random() * validDirs.length)];
+        this.direction = { x: chosen.x, y: chosen.y };
+      } else if (possibleDirs.length > 0) {
+        // If no valid dirs except reverse, just reverse
+        const chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
+        this.direction = { x: chosen.x, y: chosen.y };
+      }
+    }
 
     // Wrap around
     if (this.x < 0) this.x = canvas.width;
