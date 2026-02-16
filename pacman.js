@@ -255,6 +255,8 @@ class Ghost {
     const dx = pacman.gridX - gridX;
     const dy = pacman.gridY - gridY;
     
+    console.log(`[${this.color}] getWallCollisionDirections at (${gridX}, ${gridY}), current direction:`, this.direction);
+    
     let possibleDirs = [];
     if (this.isWalkable(gridX, gridY - 1)) {
       possibleDirs.push({ x: 0, y: -1, score: -dy });
@@ -269,6 +271,8 @@ class Ghost {
       possibleDirs.push({ x: 1, y: 0, score: dx });
     }
     
+    console.log(`[${this.color}] Available before filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    
     // Filter out BOTH forward and reverse directions (only keep perpendicular)
     possibleDirs = possibleDirs.filter(d => {
       const isReverse = (d.x === -this.direction.x && d.y === -this.direction.y);
@@ -276,8 +280,11 @@ class Ghost {
       return !isReverse && !isForward;
     });
     
+    console.log(`[${this.color}] After perpendicular filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    
     // Fallback: if no perpendicular options (corner case), allow any walkable direction except reverse
     if (possibleDirs.length === 0) {
+      console.log(`[${this.color}] No perpendicular options, using fallback`);
       return this.getDirectionOptions(gridX, gridY);
     }
     
@@ -386,6 +393,8 @@ class Ghost {
       const currentGridX = Math.floor(this.x / CELL_SIZE);
       const currentGridY = Math.floor(this.y / CELL_SIZE);
       
+      console.log(`[${this.color}] WALL HIT at (${currentGridX}, ${currentGridY})`);
+      
       // Snap to grid center to avoid getting stuck
       this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
       this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
@@ -393,8 +402,10 @@ class Ghost {
       // Get PERPENDICULAR direction options only (no forward/reverse)
       const possibleDirs = this.getWallCollisionDirections(currentGridX, currentGridY);
       const chosen = this.pickDirection(possibleDirs);
+      console.log(`[${this.color}] Chosen direction:`, chosen);
       if (chosen) {
         this.direction = { x: chosen.x, y: chosen.y };
+        console.log(`[${this.color}] Direction applied:`, this.direction);
       }
     }
 
