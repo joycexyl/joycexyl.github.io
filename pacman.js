@@ -250,30 +250,36 @@ class Ghost {
     return possibleDirs;
   }
 
-  // Get random different direction for wall collision (simple version)
+  // Get perpendicular direction for wall collision
   getWallCollisionDirections(gridX, gridY) {
     let possibleDirs = [];
     
     // Check all 4 directions
     if (this.isWalkable(gridX, gridY - 1)) {
-      possibleDirs.push({ x: 0, y: -1 });
+      possibleDirs.push({ x: 0, y: -1 }); // UP
     }
     if (this.isWalkable(gridX, gridY + 1)) {
-      possibleDirs.push({ x: 0, y: 1 });
+      possibleDirs.push({ x: 0, y: 1 }); // DOWN
     }
     if (this.isWalkable(gridX - 1, gridY)) {
-      possibleDirs.push({ x: -1, y: 0 });
+      possibleDirs.push({ x: -1, y: 0 }); // LEFT
     }
     if (this.isWalkable(gridX + 1, gridY)) {
-      possibleDirs.push({ x: 1, y: 0 });
+      possibleDirs.push({ x: 1, y: 0 }); // RIGHT
     }
     
-    // Remove current forward direction (the one that hit the wall)
-    possibleDirs = possibleDirs.filter(d => 
-      !(d.x === this.direction.x && d.y === this.direction.y)
-    );
+    // Filter to ONLY perpendicular directions
+    // If moving horizontally (x != 0), only keep vertical options (y != 0)
+    // If moving vertically (y != 0), only keep horizontal options (x != 0)
+    if (this.direction.x !== 0) {
+      // Moving horizontally (left or right) → must turn vertical (up or down)
+      possibleDirs = possibleDirs.filter(d => d.x === 0 && d.y !== 0);
+    } else if (this.direction.y !== 0) {
+      // Moving vertically (up or down) → must turn horizontal (left or right)
+      possibleDirs = possibleDirs.filter(d => d.y === 0 && d.x !== 0);
+    }
     
-    // Pick random direction from remaining options
+    // Pick random from perpendicular options
     if (possibleDirs.length > 0) {
       const randomIndex = Math.floor(Math.random() * possibleDirs.length);
       return possibleDirs[randomIndex];
