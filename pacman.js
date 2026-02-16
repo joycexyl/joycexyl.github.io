@@ -236,11 +236,28 @@ class Ghost {
     // Wait before releasing from ghost house
     if (this.releaseTimer > 0) {
       this.releaseTimer -= deltaTime;
-      if (this.releaseTimer <= 0) {
-        // Just released - give initial direction (move up to exit ghost house)
-        this.direction = { x: 0, y: -1 };
-      }
       return; // Don't move yet
+    }
+
+    // If just released (no direction yet), set initial direction
+    if (this.direction.x === 0 && this.direction.y === 0) {
+      // Move toward center column (13 or 14) before exiting
+      if (this.gridX < 13) {
+        this.direction = { x: 1, y: 0 }; // Move right toward center
+      } else if (this.gridX > 14) {
+        this.direction = { x: -1, y: 0 }; // Move left toward center
+      } else {
+        this.direction = { x: 0, y: -1 }; // Already centered, move up
+      }
+    }
+
+    // If in ghost house and not centered, keep moving toward center
+    if (this.gridY >= 13 && this.gridY <= 15) {
+      if (this.gridX < 13 && this.direction.y !== 0) {
+        this.direction = { x: 1, y: 0 }; // Move right first
+      } else if (this.gridX > 14 && this.direction.y !== 0) {
+        this.direction = { x: -1, y: 0 }; // Move left first
+      }
     }
 
     // Simple AI: move towards Pac-Man with some randomness
