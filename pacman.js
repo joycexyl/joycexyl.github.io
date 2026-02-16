@@ -221,6 +221,7 @@ class Ghost {
     this.respawnTimer = 0;
     this.releaseTimer = 0; // Time before ghost can leave house
     this.hasExitedHouse = false; // Track if ghost has left house
+    this.debugCounter = 0; // Limit debug output
   }
 
   // Get all possible direction options with scores
@@ -255,7 +256,9 @@ class Ghost {
     const dx = pacman.gridX - gridX;
     const dy = pacman.gridY - gridY;
     
-    console.log(`[${this.color}] getWallCollisionDirections at (${gridX}, ${gridY}), current direction:`, this.direction);
+    if (this.debugCounter < 5) {
+      console.log(`[${this.color}] getWallCollisionDirections at (${gridX}, ${gridY}), current direction:`, this.direction);
+    }
     
     let possibleDirs = [];
     if (this.isWalkable(gridX, gridY - 1)) {
@@ -271,7 +274,9 @@ class Ghost {
       possibleDirs.push({ x: 1, y: 0, score: dx });
     }
     
-    console.log(`[${this.color}] Available before filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    if (this.debugCounter < 5) {
+      console.log(`[${this.color}] Available before filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    }
     
     // Filter out BOTH forward and reverse directions (only keep perpendicular)
     possibleDirs = possibleDirs.filter(d => {
@@ -280,11 +285,15 @@ class Ghost {
       return !isReverse && !isForward;
     });
     
-    console.log(`[${this.color}] After perpendicular filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    if (this.debugCounter < 5) {
+      console.log(`[${this.color}] After perpendicular filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    }
     
     // Fallback: if no perpendicular options (corner case), allow any walkable direction except reverse
     if (possibleDirs.length === 0) {
-      console.log(`[${this.color}] No perpendicular options, using fallback`);
+      if (this.debugCounter < 5) {
+        console.log(`[${this.color}] No perpendicular options, using fallback`);
+      }
       return this.getDirectionOptions(gridX, gridY);
     }
     
@@ -369,8 +378,6 @@ class Ghost {
     const atCenterX = Math.abs(this.x - (currentGridX * CELL_SIZE + CELL_SIZE / 2)) < 2;
     const atCenterY = Math.abs(this.y - (currentGridY * CELL_SIZE + CELL_SIZE / 2)) < 2;
     
-    console.log(`[${this.color}] At (${currentGridX}, ${currentGridY}), hasExited: ${this.hasExitedHouse}, atCenter: ${atCenterX && atCenterY}`);
-    
     // At grid center - time to pick direction (only if exited house)
     if (atCenterX && atCenterY && this.hasExitedHouse) {
       const possibleDirs = this.getDirectionOptions(currentGridX, currentGridY);
@@ -395,7 +402,10 @@ class Ghost {
       const currentGridX = Math.floor(this.x / CELL_SIZE);
       const currentGridY = Math.floor(this.y / CELL_SIZE);
       
-      console.log(`[${this.color}] WALL HIT at (${currentGridX}, ${currentGridY})`);
+      if (this.debugCounter < 5) {
+        console.log(`[${this.color}] WALL HIT at (${currentGridX}, ${currentGridY})`);
+        this.debugCounter++;
+      }
       
       // Snap to grid center to avoid getting stuck
       this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
@@ -404,10 +414,14 @@ class Ghost {
       // Get PERPENDICULAR direction options only (no forward/reverse)
       const possibleDirs = this.getWallCollisionDirections(currentGridX, currentGridY);
       const chosen = this.pickDirection(possibleDirs);
-      console.log(`[${this.color}] Chosen direction:`, chosen);
+      if (this.debugCounter <= 5) {
+        console.log(`[${this.color}] Chosen direction:`, chosen);
+      }
       if (chosen) {
         this.direction = { x: chosen.x, y: chosen.y };
-        console.log(`[${this.color}] Direction applied:`, this.direction);
+        if (this.debugCounter <= 5) {
+          console.log(`[${this.color}] Direction applied:`, this.direction);
+        }
       }
     }
 
