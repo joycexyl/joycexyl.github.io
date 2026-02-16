@@ -15,7 +15,7 @@ const FPS = 60;
 // Resize canvas to fit container while maintaining aspect ratio
 function resizeCanvas() {
   const container = canvas.parentElement;
-  const maxWidth = Math.min(1200, container.clientWidth); // Increased from 800 to 1200
+  const maxWidth = Math.min(800, container.clientWidth); // Back to 800px
   // Height should be proportional: 31 rows / 28 columns
   const maxHeight = maxWidth * (GRID_HEIGHT / GRID_WIDTH);
   
@@ -236,6 +236,10 @@ class Ghost {
     // Wait before releasing from ghost house
     if (this.releaseTimer > 0) {
       this.releaseTimer -= deltaTime;
+      if (this.releaseTimer <= 0) {
+        // Just released - give initial direction (move up to exit ghost house)
+        this.direction = { x: 0, y: -1 };
+      }
       return; // Don't move yet
     }
 
