@@ -15,7 +15,7 @@ const FPS = 60;
 // Resize canvas to fit container while maintaining aspect ratio
 function resizeCanvas() {
   const container = canvas.parentElement;
-  const maxWidth = Math.min(800, container.clientWidth);
+  const maxWidth = Math.min(1200, container.clientWidth); // Increased from 800 to 1200
   // Height should be proportional: 31 rows / 28 columns
   const maxHeight = maxWidth * (GRID_HEIGHT / GRID_WIDTH);
   
@@ -216,9 +216,10 @@ class Ghost {
     this.personality = personality;
     this.speed = 85;
     this.radius = CELL_SIZE * 0.4;
-    this.direction = { x: 0, y: -1 };
+    this.direction = { x: 0, y: 0 }; // Start stationary
     this.active = true;
     this.respawnTimer = 0;
+    this.releaseTimer = 0; // Time before ghost can leave house
   }
 
   update(deltaTime) {
@@ -230,6 +231,12 @@ class Ghost {
         this.respawn();
       }
       return;
+    }
+
+    // Wait before releasing from ghost house
+    if (this.releaseTimer > 0) {
+      this.releaseTimer -= deltaTime;
+      return; // Don't move yet
     }
 
     // Simple AI: move towards Pac-Man with some randomness
@@ -497,6 +504,12 @@ function initGame() {
     new Ghost(14, 14, COLORS.ghosts[2], 'random'),
     new Ghost(15, 14, COLORS.ghosts[3], 'scatter')
   ];
+  
+  // Set staggered release timers for ghosts
+  ghosts[0].releaseTimer = 0;    // First ghost released immediately
+  ghosts[1].releaseTimer = 3;    // Second after 3 seconds
+  ghosts[2].releaseTimer = 6;    // Third after 6 seconds
+  ghosts[3].releaseTimer = 9;    // Fourth after 9 seconds
   
   rose = new Rose();
   hearts = [];
