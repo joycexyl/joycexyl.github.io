@@ -9,9 +9,9 @@ const ctx = canvas.getContext('2d');
 // Resize canvas to fit container while maintaining aspect ratio
 function resizeCanvas() {
   const container = canvas.parentElement;
-  const aspectRatio = 28 / 31; // Grid width/height ratio
   const maxWidth = Math.min(800, container.clientWidth);
-  const maxHeight = maxWidth / aspectRatio;
+  // Height should be proportional: 31 rows / 28 columns
+  const maxHeight = maxWidth * (GRID_HEIGHT / GRID_WIDTH);
   
   canvas.width = maxWidth;
   canvas.height = maxHeight;
