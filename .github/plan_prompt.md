@@ -2,6 +2,23 @@ You are an AI System Architect. I am building a "Personal Website" project that 
 
 The goal is to build a homepage in any style with an expandanble design that make it easy to add to in the future, and to deploy a webpage to GitHub Pages—all without writing manual code.
 
+
+In a separate webpage on the website, add a new page for a Valentine's-themed Pac-Man game. The users can directly play the game on your webpage. The link to the game webpage should be added to the homepage. Your game should include the following core features:
+
+1. Classic Pac-Man Mechanics: A maze with dots (pellets) for Pac-Man to eat, and ghosts that chase Pac-Man. The game ends when Pac-Man loses all lives. Use a classic map layout.
+2. Valentine's Power-Up — Rose 🌹: A rose randomly appears on the maze from time to time. When Pac-Man eats the rose, it enters a powered-up state for a limited duration (e.g., a few seconds), during which Pac-Man continuously shoots hearts in its current facing direction.
+3. Heart Projectiles 💕: The hearts travel across the maze and eliminate any ghost they hit. Once the power-up expires, Pac-Man returns to normal until it picks up another rose.
+
+
+In another separate webpage on the website, add an auto-updating arXiv paper feed. The page must include:
+
+1. Paper Listing: The latest arXiv papers matching keywords of your choice. Design the layout as you see fit.
+2. Paper Details: Each entry must show the paper title, authors, abstract, and a direct link to the PDF.
+3. Auto-Update: The paper list must refresh automatically every midnight via a GitHub Actions workflow.
+4. Homepage Link: A link to this page must appear on your homepage.
+5. Page Design: Style the page in any way you think readers would appreciate.
+
+
 You need to design a comprehensive plan for this project, including:
 
 Only generate the agents in .github/agents/ directory, skills in .github/skills/ directory, and prompts in .github/prompts/ directory. No additional code.
