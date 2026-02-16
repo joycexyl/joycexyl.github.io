@@ -6,6 +6,12 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+// Game Constants
+const GRID_WIDTH = 28;
+const GRID_HEIGHT = 31;
+let CELL_SIZE = 0; // Will be set after canvas resize
+const FPS = 60;
+
 // Resize canvas to fit container while maintaining aspect ratio
 function resizeCanvas() {
   const container = canvas.parentElement;
@@ -16,12 +22,6 @@ function resizeCanvas() {
   canvas.width = maxWidth;
   canvas.height = maxHeight;
 }
-
-// Game Constants
-const GRID_WIDTH = 28;
-const GRID_HEIGHT = 31;
-let CELL_SIZE = canvas.width / GRID_WIDTH;
-const FPS = 60;
 
 // Game States
 const GameState = {
