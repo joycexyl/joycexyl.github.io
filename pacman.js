@@ -223,6 +223,61 @@ class Ghost {
     this.hasExitedHouse = false; // Track if ghost has left house
   }
 
+  // Get all possible direction options with scores
+  getDirectionOptions(gridX, gridY) {
+    const dx = pacman.gridX - gridX;
+    const dy = pacman.gridY - gridY;
+    
+    let possibleDirs = [];
+    if (this.isWalkable(gridX, gridY - 1)) {
+      possibleDirs.push({ x: 0, y: -1, score: -dy });
+    }
+    if (this.isWalkable(gridX, gridY + 1)) {
+      possibleDirs.push({ x: 0, y: 1, score: dy });
+    }
+    if (this.isWalkable(gridX - 1, gridY)) {
+      possibleDirs.push({ x: -1, y: 0, score: -dx });
+    }
+    if (this.isWalkable(gridX + 1, gridY)) {
+      possibleDirs.push({ x: 1, y: 0, score: dx });
+    }
+    
+    // Filter out reverse direction
+    possibleDirs = possibleDirs.filter(d => 
+      !(d.x === -this.direction.x && d.y === -this.direction.y)
+    );
+    
+    return possibleDirs;
+  }
+
+  // Pick direction based on ghost personality
+  pickDirection(possibleDirs) {
+    if (possibleDirs.length === 0) return null;
+    
+    let chosen;
+    if (this.personality === 'aggressive') {
+      // Always chase - pick direction closest to Pac-Man
+      possibleDirs.sort((a, b) => b.score - a.score);
+      chosen = possibleDirs[0];
+    } else if (this.personality === 'ambush') {
+      // Mix of chase (70%) and random (30%)
+      if (Math.random() < 0.7) {
+        possibleDirs.sort((a, b) => b.score - a.score);
+        chosen = possibleDirs[0];
+      } else {
+        chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
+      }
+    } else if (this.personality === 'random') {
+      // Mostly random movement
+      chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
+    } else {
+      // Scatter - try to avoid Pac-Man
+      possibleDirs.sort((a, b) => a.score - b.score);
+      chosen = possibleDirs[0];
+    }
+    return chosen;
+  }
+
   update(deltaTime) {
     if (!deltaTime) return;
 
@@ -275,55 +330,9 @@ class Ghost {
     
     // At grid center - time to pick direction (only if exited house)
     if (atCenterX && atCenterY && this.hasExitedHouse) {
-      // Calculate distances to Pac-Man for scoring
-      const dx = pacman.gridX - currentGridX;
-      const dy = pacman.gridY - currentGridY;
-      
-      // Find all walkable adjacent cells with scores
-      let possibleDirs = [];
-      if (this.isWalkable(currentGridX, currentGridY - 1)) {
-        possibleDirs.push({ x: 0, y: -1, score: -dy }); // Negative because moving up reduces Y
-      }
-      if (this.isWalkable(currentGridX, currentGridY + 1)) {
-        possibleDirs.push({ x: 0, y: 1, score: dy });
-      }
-      if (this.isWalkable(currentGridX - 1, currentGridY)) {
-        possibleDirs.push({ x: -1, y: 0, score: -dx }); // Negative because moving left reduces X
-      }
-      if (this.isWalkable(currentGridX + 1, currentGridY)) {
-        possibleDirs.push({ x: 1, y: 0, score: dx });
-      }
-      
-      // CRITICAL FIX: Actually assign the filtered result!
-      possibleDirs = possibleDirs.filter(d => 
-        !(d.x === -this.direction.x && d.y === -this.direction.y)
-      );
-      
-      if (possibleDirs.length > 0) {
-        // Choose direction based on personality
-        let chosen;
-        
-        if (this.personality === 'aggressive') {
-          // Always chase - pick direction closest to Pac-Man
-          possibleDirs.sort((a, b) => b.score - a.score);
-          chosen = possibleDirs[0];
-        } else if (this.personality === 'ambush') {
-          // Mix of chase (70%) and random (30%)
-          if (Math.random() < 0.7) {
-            possibleDirs.sort((a, b) => b.score - a.score);
-            chosen = possibleDirs[0];
-          } else {
-            chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
-          }
-        } else if (this.personality === 'random') {
-          // Mostly random movement
-          chosen = possibleDirs[Math.floor(Math.random() * possibleDirs.length)];
-        } else {
-          // Scatter - try to avoid Pac-Man
-          possibleDirs.sort((a, b) => a.score - b.score);
-          chosen = possibleDirs[0];
-        }
-        
+      const possibleDirs = this.getDirectionOptions(currentGridX, currentGridY);
+      const chosen = this.pickDirection(possibleDirs);
+      if (chosen) {
         this.direction = { x: chosen.x, y: chosen.y };
       }
     }
@@ -338,8 +347,22 @@ class Ghost {
     if (this.isWalkable(nextGridX, nextGridY)) {
       this.x = nextX;
       this.y = nextY;
+    } else {
+      // HIT A WALL - Change direction immediately!
+      const currentGridX = Math.floor(this.x / CELL_SIZE);
+      const currentGridY = Math.floor(this.y / CELL_SIZE);
+      
+      // Snap to grid center to avoid getting stuck
+      this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
+      this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
+      
+      // Get new direction options and pick based on personality
+      const possibleDirs = this.getDirectionOptions(currentGridX, currentGridY);
+      const chosen = this.pickDirection(possibleDirs);
+      if (chosen) {
+        this.direction = { x: chosen.x, y: chosen.y };
+      }
     }
-    // If hitting wall, just don't move - wait for next grid center to pick new direction
 
     // Wrap around edges
     if (this.x < 0) this.x = canvas.width;
