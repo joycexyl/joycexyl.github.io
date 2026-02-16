@@ -221,7 +221,6 @@ class Ghost {
     this.respawnTimer = 0;
     this.releaseTimer = 0; // Time before ghost can leave house
     this.hasExitedHouse = false; // Track if ghost has left house
-    this.debugCounter = 0; // Limit debug output
   }
 
   // Get all possible direction options with scores
@@ -251,53 +250,36 @@ class Ghost {
     return possibleDirs;
   }
 
-  // Get perpendicular directions for wall collision (excludes forward AND reverse)
+  // Get random different direction for wall collision (simple version)
   getWallCollisionDirections(gridX, gridY) {
-    const dx = pacman.gridX - gridX;
-    const dy = pacman.gridY - gridY;
-    
-    if (this.debugCounter < 5) {
-      console.log(`[${this.color}] getWallCollisionDirections at (${gridX}, ${gridY}), current direction:`, this.direction);
-    }
-    
     let possibleDirs = [];
+    
+    // Check all 4 directions
     if (this.isWalkable(gridX, gridY - 1)) {
-      possibleDirs.push({ x: 0, y: -1, score: -dy });
+      possibleDirs.push({ x: 0, y: -1 });
     }
     if (this.isWalkable(gridX, gridY + 1)) {
-      possibleDirs.push({ x: 0, y: 1, score: dy });
+      possibleDirs.push({ x: 0, y: 1 });
     }
     if (this.isWalkable(gridX - 1, gridY)) {
-      possibleDirs.push({ x: -1, y: 0, score: -dx });
+      possibleDirs.push({ x: -1, y: 0 });
     }
     if (this.isWalkable(gridX + 1, gridY)) {
-      possibleDirs.push({ x: 1, y: 0, score: dx });
+      possibleDirs.push({ x: 1, y: 0 });
     }
     
-    if (this.debugCounter < 5) {
-      console.log(`[${this.color}] Available before filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
+    // Remove current forward direction (the one that hit the wall)
+    possibleDirs = possibleDirs.filter(d => 
+      !(d.x === this.direction.x && d.y === this.direction.y)
+    );
+    
+    // Pick random direction from remaining options
+    if (possibleDirs.length > 0) {
+      const randomIndex = Math.floor(Math.random() * possibleDirs.length);
+      return possibleDirs[randomIndex];
     }
     
-    // Filter out BOTH forward and reverse directions (only keep perpendicular)
-    possibleDirs = possibleDirs.filter(d => {
-      const isReverse = (d.x === -this.direction.x && d.y === -this.direction.y);
-      const isForward = (d.x === this.direction.x && d.y === this.direction.y);
-      return !isReverse && !isForward;
-    });
-    
-    if (this.debugCounter < 5) {
-      console.log(`[${this.color}] After perpendicular filter:`, possibleDirs.map(d => `(${d.x},${d.y})`));
-    }
-    
-    // Fallback: if no perpendicular options (corner case), allow any walkable direction except reverse
-    if (possibleDirs.length === 0) {
-      if (this.debugCounter < 5) {
-        console.log(`[${this.color}] No perpendicular options, using fallback`);
-      }
-      return this.getDirectionOptions(gridX, gridY);
-    }
-    
-    return possibleDirs;
+    return null;
   }
 
   // Pick direction based on ghost personality
@@ -398,30 +380,18 @@ class Ghost {
       this.x = nextX;
       this.y = nextY;
     } else {
-      // HIT A WALL - Change direction immediately to perpendicular!
+      // HIT A WALL - Pick random different direction!
       const currentGridX = Math.floor(this.x / CELL_SIZE);
       const currentGridY = Math.floor(this.y / CELL_SIZE);
       
-      if (this.debugCounter < 5) {
-        console.log(`[${this.color}] WALL HIT at (${currentGridX}, ${currentGridY})`);
-        this.debugCounter++;
-      }
-      
-      // Snap to grid center to avoid getting stuck
+      // Snap to grid center
       this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
       this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
       
-      // Get PERPENDICULAR direction options only (no forward/reverse)
-      const possibleDirs = this.getWallCollisionDirections(currentGridX, currentGridY);
-      const chosen = this.pickDirection(possibleDirs);
-      if (this.debugCounter <= 5) {
-        console.log(`[${this.color}] Chosen direction:`, chosen);
-      }
+      // Get random different direction
+      const chosen = this.getWallCollisionDirections(currentGridX, currentGridY);
       if (chosen) {
         this.direction = { x: chosen.x, y: chosen.y };
-        if (this.debugCounter <= 5) {
-          console.log(`[${this.color}] Direction applied:`, this.direction);
-        }
       }
     }
 
