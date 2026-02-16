@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Valentine's Pac-Man - A romantic twist on the classic game!">
+  <title>Valentine's Pac-Man 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <div class="game-container">
+    <!-- Header -->
+    <header class="game-header">
+      <h1 class="game-title">💕 Valentine's Pac-Man 🌹</h1>
+    </header>
+
+    <!-- Game Canvas & Overlay -->
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
+      
+      <!-- Instructions Overlay (shown at start) -->
+      <div id="instructionsOverlay" class="overlay">
+        <div class="overlay-content">
+          <h2>How to Play</h2>
+          <div class="instructions">
+            <div class="instruction-item">
+              <span class="key-icon">←↑↓→</span>
+              <p>Move Pac-Man with arrow keys</p>
+            </div>
+            <div class="instruction-item">
+              <span class="key-icon">SPACE</span>
+              <p>Pause / Resume game</p>
+            </div>
+            <div class="instruction-item">
+              <span class="emoji-icon">🌹</span>
+              <p>Collect roses for heart shooting power!</p>
+            </div>
+            <div class="instruction-item">
+              <span class="emoji-icon">💕</span>
+              <p>Hearts eliminate ghosts (+200 pts)</p>
+            </div>
+          </div>
+          <div class="scoring">
+            <h3>Scoring</h3>
+            <p>Pellet: <strong>+10</strong> | Rose: <strong>+50</strong> | Ghost: <strong>+200</strong></p>
+          </div>
+          <button id="startButton" class="btn-primary">Start Game</button>
+        </div>
+      </div>
+
+      <!-- Paused Overlay -->
+      <div id="pausedOverlay" class="overlay hidden">
+        <div class="overlay-content">
+          <h2>⏸️ PAUSED</h2>
+          <p>Press SPACE to resume</p>
+        </div>
+      </div>
+
+      <!-- Game Over Overlay -->
+      <div id="gameOverOverlay" class="overlay hidden">
+        <div class="overlay-content">
+          <h2>💔 Game Over</h2>
+          <p class="final-score">Final Score: <span id="finalScore">0</span></p>
+          <button id="restartButton" class="btn-primary">Play Again</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HUD -->
+    <div class="hud">
+      <div class="hud-left">
+        <div class="hud-item">
+          <span class="hud-label">Score</span>
+          <span id="scoreDisplay" class="hud-value">0</span>
+        </div>
+      </div>
+      
+      <div class="hud-center">
+        <div class="hud-item power-timer-container">
+          <span class="hud-label">Rose Power 🌹</span>
+          <div class="power-timer-bar">
+            <div id="powerTimerFill" class="power-timer-fill"></div>
+          </div>
+          <span id="powerTimerText" class="power-timer-text">0s</span>
+        </div>
+      </div>
+      
+      <div class="hud-right">
+        <div class="hud-item">
+          <span class="hud-label">Lives</span>
+          <div id="livesDisplay" class="lives-hearts">
+            ❤️❤️❤️
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="game-footer">
+      <p>Made with 💖 | <a href="index.html">← Back to Home</a></p>
+    </footer>
+  </div>
+
+  <script src="pacman.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+name: Update arXiv Papers
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:      # Manual trigger option
+
+jobs:
+  update-papers:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # Required for git push
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: |
+          cd scripts
+          npm install
+      
+      - name: Fetch arXiv papers
+        run: node scripts/fetch-papers.js
+        continue-on-error: false
+      
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Commit and push if changed
+        run: |
+          git add data/papers.json
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "[Auto] Update arXiv papers - $(date +'%Y-%m-%d %H:%M UTC')"
+            git push
+            echo "Changes pushed successfully"
+          fi
+      
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Paper update workflow failed"
+          echo "Check logs at: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"

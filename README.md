@@ -93,6 +93,28 @@ General coding conventions, naming standards, formatting rules, and version cont
 
 ## How to Use the Agent System
 
+### Paper Feed Management
+
+The paper feed is automatically updated with the latest research from arXiv in:
+- **stat.ME**: Statistics - Methodology
+- **stat.AP**: Statistics - Applications
+- **econ.EM**: Economics - Econometrics
+- **q-bio.QM**: Quantitative Biology - Quantitative Methods (Biostatistics)
+
+**Fetch new papers manually:**
+```bash
+cd scripts
+npm install
+node fetch-papers.js
+```
+
+**Features:**
+- Fetches 50 most recent papers
+- Handles rate limiting (3-second delays)
+- Automatic retry with exponential backoff
+- Data validation
+- Clean JSON output to `data/papers.json`
+
 ### Using Custom Agents with GitHub Copilot CLI
 
 The custom agents are automatically available in GitHub Copilot CLI when you reference them with the `@` symbol:
@@ -148,23 +170,44 @@ The custom agents are automatically available in GitHub Copilot CLI when you ref
 ```
 joycexyl.github.io/
 ├── index.html          # Homepage
-├── styles.css          # Stylesheet
+├── papers.html         # Research papers feed
+├── game.html           # Interactive game
+├── styles.css          # Main stylesheet
+├── papers.css          # Papers page stylesheet
+├── game.css            # Game stylesheet
+├── papers.js           # Papers page client-side logic
+├── pacman.js           # Game logic
+├── data/
+│   └── papers.json     # Cached arXiv papers data
+├── scripts/
+│   ├── fetch-papers.js # arXiv API fetcher
+│   ├── package.json    # Node.js dependencies
+│   └── node_modules/   # Dependencies
 ├── README.md           # This file
 └── .github/
     ├── agents/         # Custom agent definitions
     │   ├── web-designer.agent.md
     │   ├── html-builder.agent.md
     │   ├── css-stylist.agent.md
+    │   ├── game-developer.agent.md
+    │   ├── api-integrator.agent.md
+    │   ├── automation.agent.md
     │   └── deployment.agent.md
     ├── skills/         # Reusable skill definitions
     │   ├── html-generation.skill.md
     │   ├── css-styling.skill.md
+    │   ├── javascript-canvas.skill.md
+    │   ├── api-integration.skill.md
+    │   ├── github-actions.skill.md
     │   ├── git-operations.skill.md
     │   └── validation.skill.md
     └── prompts/        # Design guidelines and standards
         ├── design-guidelines.md
         ├── html-instructions.md
         ├── css-instructions.md
+        ├── game-design.md
+        ├── api-guidelines.md
+        ├── automation-guidelines.md
         ├── deployment-instructions.md
         └── coding-style.md
 ```
@@ -177,7 +220,17 @@ joycexyl.github.io/
 - **Colors**: Bold gradients and contrasting palettes
 - **Layouts**: Asymmetric, creative positioning
 - **Animations**: Smooth, artistic transitions
-- **Sections**: Hero, About Me, Footer (expandable)
+- **Sections**: Hero, About Me, Research Papers Feed, Footer
+
+### Features
+- **Homepage**: Creative hero section with about me content
+- **Papers Feed**: arXiv research papers in Statistics, Econometrics, and Biostatistics
+  - Client-side search and filtering
+  - Responsive card-based layout
+  - Collapsible abstracts
+  - Category badges
+  - Automated data fetching from arXiv API
+- **Interactive Game**: Canvas-based game with creative design
 
 ### Technical Standards
 - **Accessibility**: WCAG 2.1 Level AA
