@@ -369,6 +369,8 @@ class Ghost {
     const atCenterX = Math.abs(this.x - (currentGridX * CELL_SIZE + CELL_SIZE / 2)) < 2;
     const atCenterY = Math.abs(this.y - (currentGridY * CELL_SIZE + CELL_SIZE / 2)) < 2;
     
+    console.log(`[${this.color}] At (${currentGridX}, ${currentGridY}), hasExited: ${this.hasExitedHouse}, atCenter: ${atCenterX && atCenterY}`);
+    
     // At grid center - time to pick direction (only if exited house)
     if (atCenterX && atCenterY && this.hasExitedHouse) {
       const possibleDirs = this.getDirectionOptions(currentGridX, currentGridY);
