@@ -393,19 +393,25 @@ class Ghost {
       this.x = nextX;
       this.y = nextY;
     } else {
-      // HIT A WALL - Pick perpendicular direction!
-      console.log(`[WALL HIT] Ghost at wall`);
+      // HIT A WALL - But only change direction if at grid center
       const currentGridX = Math.floor(this.x / CELL_SIZE);
       const currentGridY = Math.floor(this.y / CELL_SIZE);
+      const gridCenterX = currentGridX * CELL_SIZE + CELL_SIZE / 2;
+      const gridCenterY = currentGridY * CELL_SIZE + CELL_SIZE / 2;
+      const atCenterX = Math.abs(this.x - gridCenterX) < 3;
+      const atCenterY = Math.abs(this.y - gridCenterY) < 3;
       
       // Snap to grid center
-      this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
-      this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
+      this.x = gridCenterX;
+      this.y = gridCenterY;
       
-      // Get perpendicular direction
-      const chosen = this.getWallCollisionDirections(currentGridX, currentGridY);
-      if (chosen) {
-        this.direction = { x: chosen.x, y: chosen.y };
+      // Only pick new direction if at grid center (prevents rapid bouncing)
+      if (atCenterX && atCenterY) {
+        console.log(`[WALL HIT AT CENTER] Picking new direction`);
+        const chosen = this.getWallCollisionDirections(currentGridX, currentGridY);
+        if (chosen) {
+          this.direction = { x: chosen.x, y: chosen.y };
+        }
       }
     }
 
