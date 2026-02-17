@@ -268,23 +268,30 @@ class Ghost {
       possibleDirs.push({ x: 1, y: 0 }); // RIGHT
     }
     
+    console.log(`[${this.color}] Before filter: ${possibleDirs.length} options, direction: (${this.direction.x}, ${this.direction.y})`);
+    
     // Filter to ONLY perpendicular directions
     // If moving horizontally (x != 0), only keep vertical options (y != 0)
     // If moving vertically (y != 0), only keep horizontal options (x != 0)
     if (this.direction.x !== 0) {
       // Moving horizontally (left or right) → must turn vertical (up or down)
       possibleDirs = possibleDirs.filter(d => d.x === 0 && d.y !== 0);
+      console.log(`[${this.color}] Moving horizontally, filtered to vertical: ${possibleDirs.length} options`);
     } else if (this.direction.y !== 0) {
       // Moving vertically (up or down) → must turn horizontal (left or right)
       possibleDirs = possibleDirs.filter(d => d.y === 0 && d.x !== 0);
+      console.log(`[${this.color}] Moving vertically, filtered to horizontal: ${possibleDirs.length} options`);
     }
     
     // Pick random from perpendicular options
     if (possibleDirs.length > 0) {
       const randomIndex = Math.floor(Math.random() * possibleDirs.length);
-      return possibleDirs[randomIndex];
+      const chosen = possibleDirs[randomIndex];
+      console.log(`[${this.color}] Chose direction: (${chosen.x}, ${chosen.y})`);
+      return chosen;
     }
     
+    console.log(`[${this.color}] WARNING: No perpendicular options available!`);
     return null;
   }
 
@@ -386,7 +393,8 @@ class Ghost {
       this.x = nextX;
       this.y = nextY;
     } else {
-      // HIT A WALL - Pick random different direction!
+      // HIT A WALL - Pick perpendicular direction!
+      console.log(`[WALL HIT] Ghost at wall`);
       const currentGridX = Math.floor(this.x / CELL_SIZE);
       const currentGridY = Math.floor(this.y / CELL_SIZE);
       
@@ -394,7 +402,7 @@ class Ghost {
       this.x = currentGridX * CELL_SIZE + CELL_SIZE / 2;
       this.y = currentGridY * CELL_SIZE + CELL_SIZE / 2;
       
-      // Get random different direction
+      // Get perpendicular direction
       const chosen = this.getWallCollisionDirections(currentGridX, currentGridY);
       if (chosen) {
         this.direction = { x: chosen.x, y: chosen.y };
