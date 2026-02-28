@@ -1,6 +1,106 @@
 {
   "papers": [
     {
+      "id": "2602.23355",
+      "title": "Robust model selection using likelihood as data",
+      "authors": [
+        "Jongwoo Choi",
+        "Neil A. Spencer",
+        "Jeffrey W. Miller"
+      ],
+      "abstract": "Model selection is a central task in statistics, but standard methods are not robust in misspecified settings where the true data-generating process (DGP) is not in the set of candidate models. The key limitation is that existing methods -- including information criteria and Bayesian posteriors -- do not quantify uncertainty about how well each candidate model approximates the true DGP. In this paper, we introduce a novel approach to model selection based on modeling the likelihood values themselves. Specifically, given $K$ candidate models and $n$ observations, we view the $n\\times K$ matrix of negative log-likelihood values as a random data matrix and observe that the expectation of each row is equal to the vector of Kullback--Leibler divergences between the $K$ models and the true DGP, up to an additive constant. We use a multivariate normal model to estimate and quantify uncertainty in this expectation, providing calibrated inferences for robust model selection under misspecification. The procedure is easy to compute, interpretable, and comes with theoretical guarantees, including consistency.",
+      "published": "2026-02-26",
+      "updated": "2026-02-26",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2602.23355v1",
+      "arxivUrl": "http://arxiv.org/abs/2602.23355v1",
+      "doi": null
+    },
+    {
+      "id": "2602.23324",
+      "title": "Discrete turn strategies emerge in information-limited navigation",
+      "authors": [
+        "Jose M. Betancourt",
+        "Matthew P. Leighton",
+        "Thierry Emonet",
+        "Benjamin B. Machta",
+        "Michael C. Abbott"
+      ],
+      "abstract": "Navigation up a sensory gradient is one of the simplest behaviours, and the simplest strategy is run and tumble. But some organisms use other strategies, such as reversing direction or turning by some angle. Here we ask what drives the choice of strategy, which we frame as maximising up-gradient speed using a given amount of sensory information per unit time. We find that, without directional information on which way to turn, behavioural strategies which make sudden turns perform better than gradual steering. We see various transitions where a different strategy becomes optimal, such as a switch from reversing direction to fully re-orienting tumbles as more information becomes available. And, among more complex re-orientation strategies, we show that discrete turn angles are best, and see transitions in how many such angles the optimal strategy employs.",
+      "published": "2026-02-26",
+      "updated": "2026-02-26",
+      "categories": [
+        "physics.bio-ph",
+        "cond-mat.stat-mech",
+        "q-bio.QM"
+      ],
+      "primaryCategory": "physics.bio-ph",
+      "pdfUrl": "https://arxiv.org/pdf/2602.23324v1",
+      "arxivUrl": "http://arxiv.org/abs/2602.23324v1",
+      "doi": null
+    },
+    {
+      "id": "2602.23311",
+      "title": "Data-Efficient Generative Modeling of Non-Gaussian Global Climate Fields via Scalable Composite Transformations",
+      "authors": [
+        "Johannes Brachem",
+        "Paul F. V. Wiemann",
+        "Matthias Katzfuss"
+      ],
+      "abstract": "Quantifying uncertainty in future climate projections is hindered by the prohibitive computational cost of running physical climate models, which severely limits the availability of training data. We propose a data-efficient framework for emulating the internal variability of global climate fields, specifically designed to overcome these sample-size constraints. Inspired by copula modeling, our approach constructs a highly expressive joint distribution via a composite transformation to a multivariate standard normal space. We combine a nonparametric Bayesian transport map for spatial dependence modeling with flexible, spatially varying marginal models, essential for capturing non-Gaussian behavior and heavy-tailed extremes. These marginals are defined by a parametric model followed by a semi-parametric B-spline correction to capture complex distributional features. The marginal parameters are spatially smoothed using Gaussian-process priors with low-rank approximations, rendering the computational cost linear in the spatial dimension. When applied to global log-precipitation-rate fields at more than 50,000 grid locations, our stochastic surrogate achieves high fidelity, accurately quantifying the climate distribution's spatial dependence and marginal characteristics, including the tails. Using only 10 training samples, it outperforms a state-of-the-art competitor trained on 80 samples, effectively octupling the computational budget for climate research. We provide a Python implementation at https://github.com/jobrachem/ppptm .",
+      "published": "2026-02-26",
+      "updated": "2026-02-26",
+      "categories": [
+        "stat.ME",
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2602.23311v1",
+      "arxivUrl": "http://arxiv.org/abs/2602.23311v1",
+      "doi": null
+    },
+    {
+      "id": "2602.23291",
+      "title": "Identifiability of Treatment Effects with Unobserved Spatially Varying Confounders",
+      "authors": [
+        "Tommy Tang",
+        "Xinran Li",
+        "Bo Li"
+      ],
+      "abstract": "The study of causal effects in the presence of unmeasured spatially varying confounders has garnered increasing attention. However, a general framework for identifiability, which is critical for reliable causal inference from observational data, has yet to be advanced. In this paper, we study a linear model with various parametric model assumptions on the covariance structure between the unmeasured confounder and the exposure of interest. We establish identifiability of the treatment effect for many commonly 20 used spatial models for both discrete and continuous data, under mild conditions on the structure of observation locations and the exposure-confounder association. We also emphasize models or scenarios where identifiability may not hold, under which statistical inference should be conducted with caution.",
+      "published": "2026-02-26",
+      "updated": "2026-02-26",
+      "categories": [
+        "stat.ME",
+        "math.ST"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2602.23291v1",
+      "arxivUrl": "http://arxiv.org/abs/2602.23291v1",
+      "doi": null
+    },
+    {
+      "id": "2602.23269",
+      "title": "An Active Learning Framework for Data-Efficient, Human-in-the-Loop Enzyme Function Prediction",
+      "authors": [
+        "Ashley Babjac",
+        "Adrienne Hoarfrost"
+      ],
+      "abstract": "Generalizable protein function prediction is increasingly constrained by the growing mismatch between exponentially expanding sequences of environmental proteins and the comparatively slow accumulation of experimentally verified functional data. Active learning offers a promising path forward for accelerating biological function prediction, by selecting the most informative proteins to experimentally annotate for data-efficient training, yet its potential remains largely unexplored. We introduce HATTER (Human-in-the-loop Adaptive Toolkit for Transferable Enzyme Representations), a modular framework that integrates multiple active learning strategies with human-in-the-loop experimental annotation to efficiently fine tune function prediction models. We compare active learning training to standard supervised training for biological enzyme function prediction, demonstrating that active learning achieves performance comparable to standard training across diverse protein sequence evaluation datasets while requiring fewer model updates, processing less data, and substantially reducing computational cost. Interestingly, point-based uncertainty sampling methods like entropy or margin sampling perform as well or better than more complex acquisition functions such as bayesian sampling or BALD, highlighting the relative importance of sequence diversity in training datasets and model architecture design. These results demonstrate that human-in-the-loop active learning can efficiently accelerate enzyme discovery, providing a flexible platform for adaptive, scalable, and expert-guided protein function prediction.",
+      "published": "2026-02-26",
+      "updated": "2026-02-26",
+      "categories": [
+        "q-bio.QM"
+      ],
+      "primaryCategory": "q-bio.QM",
+      "pdfUrl": "https://arxiv.org/pdf/2602.23269v1",
+      "arxivUrl": "http://arxiv.org/abs/2602.23269v1",
+      "doi": null
+    },
+    {
       "id": "2602.23257",
       "title": "Randomization Tests in Switchback Experiments",
       "authors": [
@@ -904,118 +1004,10 @@
       "pdfUrl": "https://arxiv.org/pdf/2602.21490v1",
       "arxivUrl": "http://arxiv.org/abs/2602.21490v1",
       "doi": null
-    },
-    {
-      "id": "2602.21478",
-      "title": "Efficient Inference after Directionally Stable Adaptive Experiments",
-      "authors": [
-        "Zikai Shen",
-        "Houssam Zenati",
-        "Nathan Kallus",
-        "Arthur Gretton",
-        "Koulik Khamaru",
-        "Aurélien Bibaut"
-      ],
-      "abstract": "We study inference on scalar-valued pathwise differentiable targets after adaptive data collection, such as a bandit algorithm. We introduce a novel target-specific condition, directional stability, which is strictly weaker than previously imposed target-agnostic stability conditions. Under directional stability, we show that estimators that would have been efficient under i.i.d. data remain asymptotically normal and semiparametrically efficient when computed from adaptively collected trajectories. The canonical gradient has a martingale form, and directional stability guarantees stabilization of its predictable quadratic variation, enabling high-dimensional asymptotic normality. We characterize efficiency using a convolution theorem for the adaptive-data setting, and give a condition under which the one-step estimator attains the efficiency bound. We verify directional stability for LinUCB, yielding the first semiparametric efficiency guarantee for a regular scalar target under LinUCB sampling.",
-      "published": "2026-02-25",
-      "updated": "2026-02-25",
-      "categories": [
-        "stat.ML",
-        "cs.LG",
-        "math.ST",
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ML",
-      "pdfUrl": "https://arxiv.org/pdf/2602.21478v1",
-      "arxivUrl": "http://arxiv.org/abs/2602.21478v1",
-      "doi": null
-    },
-    {
-      "id": "2602.21423",
-      "title": "Causal Inference with High-Dimensional Treatments",
-      "authors": [
-        "Patrick Kramer",
-        "Edward H. Kennedy",
-        "Isaac M. Opper"
-      ],
-      "abstract": "In this work, we consider causal inference in various high-dimensional treatment settings, including for single multi-valued treatments and vector treatments with binary or continuous components, when the number of treatments can be comparable to or even larger than the number of observations. These settings bring unique challenges: first, the treatment effects of interest are a high-dimensional vector rather than a low-dimensional scalar; second, positivity violations are often unavoidable; and third, estimation can be based on a smaller effective sample size. We first discuss fundamental limits of estimating effects here, showing that consistent estimation is impossible without further assumptions. We go on to propose a novel sparse pseudo-outcome regression framework for arbitrary high-dimensional statistical functionals, which includes generic constrained regression estimators and error guarantees. We use the framework to derive new doubly robust estimators for mean potential outcomes of high-dimensional treatments, though it can also be applied to other scenarios. We analyze the proposed estimators under exact and approximate sparsity assumptions, giving finite-sample risk bounds. Finally, we derive minimax lower bounds to characterize optimal rates of convergence and show our risk bounds are unimprovable.",
-      "published": "2026-02-24",
-      "updated": "2026-02-24",
-      "categories": [
-        "math.ST",
-        "stat.ME"
-      ],
-      "primaryCategory": "math.ST",
-      "pdfUrl": "https://arxiv.org/pdf/2602.21423v1",
-      "arxivUrl": "http://arxiv.org/abs/2602.21423v1",
-      "doi": null
-    },
-    {
-      "id": "2602.21410",
-      "title": "Identifying the potential of sample overlap in evidence synthesis of observational studies",
-      "authors": [
-        "Zhentian Zhang",
-        "Tim Friede",
-        "Tim Mathes"
-      ],
-      "abstract": "Sample overlap is a common issue in evidence synthesis in the field of medical research, particularly when integrating findings from observational studies utilizing existing databases such as registries. Due to the general inaccessibility of unique identifiers for each observation, addressing sample overlap has been a complex problem, potentially biasing evidence synthesis outcomes and undermining their credibility. We developed a method to construct indicators for the degree of sample overlap in evidence synthesis of studies based on existing data. Our method is rooted in set theory and is based on the coding of the ranges of several well selected sample characteristics, offers a practical solution by focusing on making inference based on sample characteristics rather than on individual participant data. Useful information, such as the overlap-free sample set with the largest sample size in an evidence synthesis, can be derived from this method. We applied our model to several real-world evidence syntheses, demonstrating its effectiveness and flexibility. Our findings highlight the growing importance of addressing sample overlap in evidence synthesis, especially with the increasing relevance of secondary use of data, an area currently under-explored in research.",
-      "published": "2026-02-24",
-      "updated": "2026-02-24",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2602.21410v1",
-      "arxivUrl": "http://arxiv.org/abs/2602.21410v1",
-      "doi": null
-    },
-    {
-      "id": "2602.21408",
-      "title": "Generative Bayesian Computation as a Scalable Alternative to Gaussian Process Surrogates",
-      "authors": [
-        "Nick Polson",
-        "Vadim Sokolov"
-      ],
-      "abstract": "Gaussian process (GP) surrogates are the default tool for emulating expensive computer experiments, but cubic cost, stationarity assumptions, and Gaussian predictive distributions limit their reach. We propose Generative Bayesian Computation (GBC) via Implicit Quantile Networks (IQNs) as a surrogate framework that targets all three limitations. GBC learns the full conditional quantile function from input--output pairs; at test time, a single forward pass per quantile level produces draws from the predictive distribution. Across fourteen benchmarks we compare GBC to four GP-based methods. GBC improves CRPS by 11--26\\% on piecewise jump-process benchmarks, by 14\\% on a ten-dimensional Friedman function, and scales linearly to 90,000 training points where dense-covariance GPs are infeasible. A boundary-augmented variant matches or outperforms Modular Jump GPs on two-dimensional jump datasets (up to 46\\% CRPS improvement). In active learning, a randomized-prior IQN ensemble achieves nearly three times lower RMSE than deep GP active learning on Rocket LGBB. Overall, GBC records a favorable point estimate in 12 of 14 comparisons. GPs retain an edge on smooth surfaces where their smoothness prior provides effective regularization.",
-      "published": "2026-02-24",
-      "updated": "2026-02-24",
-      "categories": [
-        "cs.LG",
-        "stat.AP",
-        "stat.CO",
-        "stat.ME",
-        "stat.ML"
-      ],
-      "primaryCategory": "cs.LG",
-      "pdfUrl": "https://arxiv.org/pdf/2602.21408v1",
-      "arxivUrl": "http://arxiv.org/abs/2602.21408v1",
-      "doi": null
-    },
-    {
-      "id": "2602.21403",
-      "title": "An index of effective number of variables for uncertainty and reliability analysis in model selection problems",
-      "authors": [
-        "Luca Martino",
-        "Eduardo Morgado",
-        "Roberto San Millán-Castillo"
-      ],
-      "abstract": "An index of an effective number of variables (ENV) is introduced for model selection in nested models. This is the case, for instance, when we have to decide the order of a polynomial function or the number of bases in a nonlinear regression, choose the number of clusters in a clustering problem, or the number of features in a variable selection application (to name few examples). It is inspired by the idea of the maximum area under the curve (AUC). The interpretation of the ENV index is identical to the effective sample size (ESS) indices concerning a set of samples. The ENV index improves {drawbacks of} the elbow detectors described in the literature and introduces different confidence measures of the proposed solution. These novel measures can be also employed jointly with the use of different information criteria, such as the well-known AIC and BIC, or any other model selection procedures. Comparisons with classical and recent schemes are provided in different experiments involving real datasets. Related Matlab code is given.",
-      "published": "2026-02-24",
-      "updated": "2026-02-24",
-      "categories": [
-        "stat.ME",
-        "cs.CE",
-        "eess.SP",
-        "stat.CO"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2602.21403v1",
-      "arxivUrl": "http://arxiv.org/abs/2602.21403v1",
-      "doi": "10.1016/j.sigpro.2024.109735"
     }
   ],
   "metadata": {
-    "lastUpdated": "2026-02-27T02:44:53.508Z",
+    "lastUpdated": "2026-02-28T02:33:12.218Z",
     "totalPapers": 50,
     "categories": [
       "stat.ME",
@@ -1023,6 +1015,6 @@
       "econ.EM",
       "q-bio.QM"
     ],
-    "queryDate": "2026-02-27"
+    "queryDate": "2026-02-28"
   }
 }
