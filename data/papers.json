@@ -1,6 +1,493 @@
 {
   "papers": [
     {
+      "id": "2609.05400",
+      "title": "A Generalizable Feature Extractor for Alzheimer's-Related Brain MRI Tasks",
+      "authors": [
+        "Reza Rajabli",
+        "D. Louis Collins"
+      ],
+      "abstract": "When there is not enough labeled data to properly train deep learning models, transfer learning can help. We still do not fully understand how effective it is in neuroimaging, especially for Alzheimer's disease research. It is also not clear if these transferred models can work on new datasets without being retrained for each specific task. We evaluate whether a compact, supervised pretrained model can serve as a reusable foundation model for downstream neuroimaging tasks. We freeze the 7.18 million weights of a 3D CNN previously trained for brain-age prediction, and adapt it to each task using Low-Rank Adaptation (LoRA), requiring only ~1% additional trainable parameters. We evaluate generalizability in six experiments. Adapting the model to classify cognitively normal versus Dementia on ADNI gave an AUC of 0.964 on held-out folds (Experiment #1). Applying that adapted model unchanged to OASIS-3, with no retraining, gave an AUC of 0.871 (Experiment #2). Reusing its output logit together with age and a cognitive score distinguished stable from progressing MCI with an AUC of 0.828 (Experiment #3). Adapting the same backbone to predict amyloid positivity from structural MRI gave an AUC of 0.804 (Experiment #4). Finally, the same approach estimated ICV-normalized hippocampal and white matter hypointensity volumes directly from the T1w image, with R^2 of 0.80 and 0.91 respectively, tasks normally addressed with much larger U-Net networks (Experiments #5 and #6). A compact model supervised on brain age can therefore serve as a reusable backbone, adapting to each task with ~1% additional parameters and transferring to an unseen cohort without any training. Our findings suggest that a carefully trained brain age model can serve as an effective foundation model for Alzheimer's related tasks, even under strict data constraints.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "cs.CV",
+        "q-bio.QM"
+      ],
+      "primaryCategory": "cs.CV",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05400v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05400v1",
+      "doi": null
+    },
+    {
+      "id": "2609.05372",
+      "title": "Does p-Hacking Mitigate or Exacerbate the Effects of Publication Bias?",
+      "authors": [
+        "Yong Cai",
+        "Agathe Pernoud",
+        "Boli Xu"
+      ],
+      "abstract": "This paper studies the effects of p-hacking on the bias of published estimates when papers with statistically significant results are selectively published. We show that fast p-hacking---actions that lead to large changes in p-values---always exacerbates the bias from selective publication. On the other hand, slow p-hacking---actions that lead to small changes in p-values---exacerbates bias when selection is weak, but mitigates it when selection is strong. In a model featuring both types of p-hacking, we show that a normality assumption identifies the true distribution of effects as well as the counterfactual mean that would obtain under selective publication without p-hacking. Applying the model to meta-analyses on the effects of behavioral nudges and development aid, we find suggestive evidence that both mitigation and exacerbation can arise in practice.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "econ.EM"
+      ],
+      "primaryCategory": "econ.EM",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05372v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05372v1",
+      "doi": null
+    },
+    {
+      "id": "2609.05360",
+      "title": "Finite-sample nonparametric mean tests: Leave-one-out duality and asymptotic optimality",
+      "authors": [
+        "Yifan Zhu",
+        "John C. Duchi"
+      ],
+      "abstract": "We study finite-sample valid tests of the one-sided mean hypothesis $H_0:μ\\leq 1$ against $H_1:μ>1$ for nonnegative random variables. To do so, we develop a leave-one-out dual certificate framework, where certain pointwise inequalities imply p-value validity under the conditional mean null $\\mathbb{E}[X_i\\mid\\mathbf{X}_{-i}]\\leq 1$, and which also gives conditions that allow combining dual certificates for p-values to show that their pointwise minimum is also a valid p-value. The framework proves finite-sample validity of Wang and Zhao's nonparametric likelihood-ratio statistic $T_{\\mathrm{nplr}}$, yields a new p-value $T_{\\mathrm{bin}+}$ extending the Clopper--Pearson binomial test to general nonnegative random variables, and shows that the pointwise minimum $\\min\\{T_{\\mathrm{nplr}},T_{\\mathrm{bin}+}\\}$ is itself a valid and more powerful p-value. We establish sharp optimality results for such testing problems in two regimes: both $T_{\\mathrm{nplr}}$ and $T_{\\mathrm{bin}+}$ attain a universal detectability boundary for the null $H_0$ without moment or tail assumptions, and $T_{\\mathrm{bin}+}$ attains a nonparametric power lower bound under $n^{-1/2}$-local alternatives to $H_0$. Efficient algorithms and numerical experiments demonstrate substantial finite-sample power gains over existing valid methods.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "math.ST",
+        "stat.ME"
+      ],
+      "primaryCategory": "math.ST",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05360v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05360v1",
+      "doi": null
+    },
+    {
+      "id": "2609.05213",
+      "title": "Symptom clusters in Long COVID in the UK: prospective community-based cohort study using unsupervised machine learning",
+      "authors": [
+        "Jasmine Aherne",
+        "Ines Henriques-Cadby",
+        "Thomas House"
+      ],
+      "abstract": "Long COVID is a condition usually defined by persisting symptoms following infection by the SARS-CoV-2 virus beyond the acute phase of infection. The condition has a significant impact on healthcare systems, the economy, and the individuals living with it. Due to the diverse and extensive symptomatology of long COVID, symptom co-occurrence tracking can be used to capture patient experiences and improve understanding, diagnosis, and management. Here, we leverage the UK Office for National Statistics (ONS) COVID-19 Infection Survey (CIS). The CIS was run between April 2020 and March 2023. On February 3, 2021, the ONS launched a new CIS question evaluating self-reported symptom persistence of 23 long COVID symptoms post self-reported COVID-19 infection. We use Jaccard symptom-by symptom distance matrices, derived from the binary survey responses of the presence of each symptom. Three methods are then used to visualise symptom co-occurrence: heatmaps, non-metric multidimensional scaling, and agglomerative hierarchical clustering with complete linkage. We split our analysis into two parts, first looking at all long COVID survey responses (n = 207,319) and then looking at responses stratified by time-since-onset of long COVID up to 24 months (n = 30,224 at zero months-since-onset). We find higher symptom co-occurrence in prolonged long COVID. We also find clusters of neurological/systemic symptoms, gastrointestinal symptoms, and respiratory symptoms, with separability in symptom co-occurrence by organ system becoming less pronounced as time-since-onset of long COVID increases. Shortness of breath, weakness/tiredness, and muscle ache present as core symptoms long COVID. We demonstrate that the symptom experience of long COVID evolves from early stages to late stages with higher symptom burden and multi-systemic presentation. We also find three possible phenotypes of early long COVID.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.AP",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05213v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05213v1",
+      "doi": null
+    },
+    {
+      "id": "2609.05096",
+      "title": "Post-Corrected Raw-Score Martingale Posterior Sampling for von Mises-Fisher Models",
+      "authors": [
+        "Yi Xu",
+        "Xinye Chen",
+        "Sheng Jiang"
+      ],
+      "abstract": "We develop a finite-horizon calibration method for raw-score martingale posteriors, with von Mises--Fisher models as the main worked example. Starting from the maximum likelihood estimator, predictive paths are generated by simulating future observations from the current fitted model and updating the natural parameter by unpreconditioned score increments. The main methodological step is to separate predictive simulation from covariance calibration. Raw-score increments have Fisher-information covariance, whereas Bernstein--von Mises calibration requires inverse-information covariance. We therefore apply a terminal linear correction based on a local information estimate. For more efficient implementation, we also introduce a hybrid version that replaces the omitted tail of the infinite predictive continuation by a Gaussian approximation with matching leading-order quadratic variation. We prove fixed-n convergence, a finite-horizon approximation bound for the Gaussian tail, and a Bernstein--von Mises limit for the hybrid post-corrected sampler under local regularity and consistent terminal calibration. Simulations show that tail correction reduces truncation-induced underdispersion, and an OSCAR ocean-current example illustrates local directional uncertainty summaries.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME",
+        "stat.CO"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05096v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05096v1",
+      "doi": null
+    },
+    {
+      "id": "2609.05089",
+      "title": "On E-Backtesting: Generalizations and Sample Size Determination",
+      "authors": [
+        "Dennis Oestmann",
+        "Thorsten Dickhaus"
+      ],
+      "abstract": "We present an approach for determining sample sizes required to detect underestimations of the expected shortfall with a prescribed power when applying the recently proposed e-backtesting procedure. We consider scenarios in which the value-at-risk at level $p$ is always estimated correctly, while the difference between the true expected shortfall and the value-at-risk is underestimated by a given factor $r$. We show that exploiting the structure of the backtest e-statistic proposed for backtesting the expected shortfall at level $p$ enables the derivation of approximate lower bounds for the required sample sizes by considering a sequence of independent and identically distributed Bernoulli random variables. We also discuss potential limitations of this approximation and compare the resulting sample size requirements with those obtained in practical applications using Monte Carlo simulations. Furthermore, we present generalizations of the e-backtesting procedure, in particular to risk measures which constitute Bayes pairs.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05089v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05089v1",
+      "doi": null
+    },
+    {
+      "id": "2609.05007",
+      "title": "Multi-Fidelity Gaussian Processes for Translational Modelling of Clinical Outcomes",
+      "authors": [
+        "Isaac S. Hayden",
+        "Alicia D'Souza",
+        "Steven Niederer",
+        "Sarah Filippi"
+      ],
+      "abstract": "Bridging the gap between animal and human experiments remains a major challenge in translational medicine, particularly in early drug development. Progress is constrained by financial cost, the difficulty of integrating heterogeneous in vitro and in vivo data, and the desire to reduce the use of animal testing balanced against minimising the risk to human participants. We present a statistical machine learning framework using multi-fidelity Gaussian processes, in which animal studies are considered as lower fidelity but informative approximations to human experiments. This allows cross-species similarities and nonlinear exposure-response relationships to be learned simultaneously, enabling principled extrapolation between species while quantifying uncertainty. By leveraging information from multiple experimental fidelities, our method improves estimation of clinically relevant quantities of interest and supports the replacement, reduction, and refinement of in vivo testing. We first illustrate this approach in a simulated scenario, before validating it on real clinical data. We simulate data for drug-induced QT-interval prolongation, a key cardiac safety assessment required for regulatory approval. This framework provides a probabilistic surrogate capable of integrating in vitro pharmacology, animal experiments and human data within a unified statistical model. Crucially, it achieves this at no additional experimental cost while also enabling transfer learning across compounds. As a result, predictions and uncertainty quantification for new drugs can be generated from in vitro findings alone, providing additional efficiency gains and accelerating decision making. For validation, we use a clinical dataset measuring change in heart rate under autonomic blockade, which represents some of the challenges commonly found in multi-species datasets.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.AP",
+      "pdfUrl": "https://arxiv.org/pdf/2609.05007v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.05007v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04994",
+      "title": "Identification and Estimation of Intergenerational Income Mobility Measures",
+      "authors": [
+        "Alejandro Puerta-Cuartas"
+      ],
+      "abstract": "Measuring the intergenerational transmission of lifetime economic status is complicated by researchers often only observing snapshots of income at specific ages. Consequently, standard practice estimates intergenerational mobility using income averages, introducing life-cycle bias that compromises reliability and comparability across studies, time, and place. I develop a missing data framework that exploits available income data and observable characteristics to eliminate life-cycle bias. This method combines nonparametric identification with Neyman-orthogonal moments to construct debiased machine learning estimators for intergenerational income mobility measures under plausible missing-at-random and testable independence assumptions. I apply this framework to estimate the intergenerational elasticity for the U.S. using the Panel Study of Income Dynamics across birth cohorts from 1954 to 1977 with rolling 10-year windows. While existing approaches estimate values between 0.41 and 0.54, the proposed method yields substantially higher estimates ranging from 0.6 to 0.7, averaging 0.64. These results align closely with recent evidence using long time averages over mid-career periods, reinforcing high U.S. intergenerational persistence.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "econ.EM"
+      ],
+      "primaryCategory": "econ.EM",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04994v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04994v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04988",
+      "title": "A Strictly Proper Scoring-Rule Theory for Calibrating Stochastic Car-Following Models",
+      "authors": [
+        "Shirui Zhou",
+        "Shiteng Zheng",
+        "Junzhe Ding",
+        "Rui Jiang",
+        "Junfang Tian"
+      ],
+      "abstract": "Problem definition: Fixed parameters and inputs in a stochastic simulator induce a distribution over complete trajectories, not one trajectory. Calibration must assess this distribution, including variability and temporal dependence, against observations. Yet stochastic car-following models are commonly calibrated with trajectory-error objectives inherited from deterministic modelling. Methodology/results: We establish a scoring-rule theory of stochastic calibration. Strict propriety requires the data-generating distribution to uniquely minimise expected score. MRMean-I, the average run-wise error, drives separable stochastic spread to zero; MRMean-II, the error of the ensemble-mean trajectory, cannot identify a parameter that changes only spread; and MRMin, the error of the closest simulated run, has a population target that changes with ensemble size. These results are confirmed for stochastic Intelligent Driver Model extensions with additive acceleration noise and random desired headway. We recommend exact maximum likelihood when the correct transition density is available; otherwise, an unbiased simulation-based estimator of a strictly proper score. The energy score meets this requirement and gives the best held-out distributional prediction among the evaluated simulation-based objectives, although both models retain too-narrow bands and miss persistent disturbances. Implications:Strict propriety separates a valid calibration target from parameter identifiability and model adequacy. The theory applies to vector-valued outputs from stochastic transportation simulators; the car-following experiments illustrate its scope.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME",
+        "physics.soc-ph"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04988v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04988v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04960",
+      "title": "Finite Mixtures of Generalized Estimating Equations for Clustering Multivariate Correlated Outcomes",
+      "authors": [
+        "Shonosuke Sugasawa",
+        "Francis K. C. Hui"
+      ],
+      "abstract": "Multivariate correlated outcomes occur across disciplines, including ecology, social sciences, and psychometrics. This paper focuses on clustering these outcomes across observational units, specifically, finding groups of units with the same ``outcome profile\". Our motivation comes from bioregionalization in ecology, which aims to cluster sites into bioregions with the same species profiles, where site membership can depend on environmental or habitat covariates. To accomplish this, we propose finite mixtures of generalized estimating equations (MixGEE). Unlike existing approaches to model-based bioregionalization, MixGEE partitions sites into regions while accounting for between-species correlations through a region-specific working correlation structure. Thus, each region is characterized by a marginal species mean vector and a between-species correlation matrix. Unlike likelihood-based finite mixture models, MixGEE does not require a full joint distribution of the multivariate outcomes. Instead, we construct a pseudo-posterior probability for region membership motivated by the large-sample distribution of the estimating equation. This leads to an iterative algorithm alternating between updating these probabilities and solving weighted estimating equations. We determine the number of regions using cross-validation based on predictive performance for held-out sites and species components, and use a clustered Dirichlet random-weight bootstrap for uncertainty quantification. Simulations demonstrate reliable estimation and inference under various correlation structures and more stable selection of the number of groups than methods that ignore dependence. Applying MixGEE to presence--absence records of fish species around the Kerguelen Plateau reveals three distinct fish assemblage profiles with heterogeneous occurrence and within-site correlation patterns.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04960v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04960v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04940",
+      "title": "Treatment persistence drives estimator performance in longitudinal causal inference based on observational data: A simulation study",
+      "authors": [
+        "Sergio Gaiotti",
+        "Sara Poletto",
+        "Enrico Longato",
+        "Erica Tavazzi",
+        "Martina Vettoretti"
+      ],
+      "abstract": "Longitudinal clinical data are increasingly available, offering opportunities to study treatment effects over time but also raising challenges related to time-varying confounding and evolving treatment decisions. We investigate how longitudinal treatment dynamics affect causal effect estimation when baseline and longitudinal methods target different causal estimands. Using a structural causal model (SCM), we simulate data with time-varying confounding, binary treatment, and an absorbing binary outcome under 9 scenarios combining functional complexity and treatment persistence. We compare three baseline and two longitudinal estimators against Monte Carlo ground-truth risk ratios (RRs) under sustained treatment regimes. Results show that treatment persistence is the main driver of estimator behaviour. High persistence reduces the discrepancy between baseline and sustained-regime estimands, making baseline estimators closer to the sustained-regime ground truth (average relative deviation of baseline IPTW/TMLE decreasing from 61% under low persistence to 10% under high persistence), whereas low persistence induces practical positivity challenges and increases the variability of longitudinal estimators, with empirical 95% interval widths increasing from 0.22 to 0.46 for longitudinal IPTW and from 0.20 to 0.36 for LTMLE when moving from high to low persistence. These findings emphasise that estimator performance should be interpreted jointly with the target intervention and the treatment process generating the observed data.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04940v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04940v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04933",
+      "title": "Goodness-of-fit testing for the Pareto type-I distribution based on a mean residual life characterization",
+      "authors": [
+        "Shivshankar Nila",
+        "Ishapathik Das",
+        "N. Balakrishna"
+      ],
+      "abstract": "The statistical analysis of heavy-tailed data has received considerable attention because extreme observations frequently arise in many practical applications. The Pareto type-I distribution is a fundamental heavy-tailed model used in economics, finance, actuarial science, insurance, reliability, and extreme value analysis. In this paper, we propose novel goodness-of-fit tests for the Pareto distribution using a mean residual life characterization. The test statistic is constructed using U-statistic theory, and its asymptotic behaviour is established under both the null and alternative hypotheses. Its finite-sample performance is evaluated through Monte Carlo simulations using maximum-likelihood and method-of-moments estimation and compared with existing tests. The results show that the proposed test controls the nominal significance level and performs competitively in terms of power across a broad range of alternatives. Finally, the proposed methodology is illustrated using the Danish fire insurance loss and pollution datasets.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME",
+        "math.ST"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04933v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04933v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04853",
+      "title": "Variational Inference for Functional Data Clustering via Dirichlet Process Mixtures with Correlated Errors",
+      "authors": [
+        "Chengqian Xian"
+      ],
+      "abstract": "We propose a Bayesian model-based approach for clustering functional data with an unknown number of clusters and temporally correlated observations. Cluster-specific mean functions are represented using B-spline basis expansions, while within-curve dependence is modeled through an Ornstein--Uhlenbeck covariance structure. A truncated Dirichlet process mixture is used to infer the effective number of clusters, and a variational EM algorithm is developed for efficient posterior approximation. Simulation studies show that the proposed method performs well under both correctly specified and misspecified mean-function settings and compares favorably with several existing functional clustering methods. Comparisons with MCMC indicate that the variational approximation yields consistent clustering and parameter estimates but at substantially lower computational cost. An application to Canadian daily temperature curves further demonstrates the practical usefulness of the method in identifying interpretable functional clusters while accounting for temporal dependence.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04853v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04853v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04740",
+      "title": "Copula-Based Bivariate Kumaraswamy-Teissier Distributions: Modeling Temperature-Rainfall Dependence and Compound Extremes",
+      "authors": [
+        "Kamana Mishra",
+        "Tanmay Kayal",
+        "Sarita Azad"
+      ],
+      "abstract": "This study proposes two novel bivariate distributions for jointly modeling temperature and rainfall by integrating Kumaraswamy-Teissier marginals with Clayton and Gumbel copula structures. To capture a wide range of dependence patterns, including both positive and negative associations, rotated copula variants (90°, 180°, and 270°) are incorporated along with their corresponding tail dependence characteristics. Model parameters are estimated using maximum likelihood and the inference functions for margins (IFM) approach, and their finite-sample performance is assessed through a comprehensive Monte Carlo simulation study. The proposed models are applied to monthly gridded temperature and rainfall data from the Northwest Himalayas, a region characterized by complex hydro-climatic variability. Comparative analysis demonstrates that the proposed framework outperforms several existing bivariate models and effectively captures lower-tail, upper-tail, and asymmetric dependence structures across summer and winter seasons. Based on the selected best-fitting copula models, univariate, joint, and conditional return periods are derived to quantify the risk of compound extremes. The results highlight the capability of the proposed approach to provide a more realistic representation of hydro-climatic dependence and offer a robust framework for assessing the risk of extreme temperature and rainfall events in mountainous regions.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04740v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04740v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04736",
+      "title": "A Quantile-Based Kumaraswamy-Teissier autoregressive moving average models",
+      "authors": [
+        "Kamana Mishra",
+        "Tanmay Kayal",
+        "Sarita Azad"
+      ],
+      "abstract": "This paper introduces a quantile-based Kumaraswamy-Teissier autoregressive moving average (KTARMA) model for positive-valued time series. Leveraging the flexibility of the extended Kumaraswamy-Teissier distribution within an observation-driven framework, the random component of the distribution is conditioned on the historical process and time-varying covariates, and is parameterized explicitly via its $ρ$-th conditional quantile, where $ρ\\in (0,1)$. To capture temporal dependence, the systematic component maps an ARMA-type structure to this conditional quantile via an appropriate link function. For inference, we implement a conditional maximum likelihood framework and derive explicit analytical expressions for the resulting score vector and conditional information matrix, followed by the development of model diagnostic and forecasting procedures. The finite-sample performance of the developed estimators is evaluated through a Monte Carlo simulation study across various parameter configurations and quantile levels. Finally, the practical utility of the study is demonstrated by modeling monthly rainfall data over the Northwest Himalayas (2001-2025), where 525 grids are grouped into four homogeneous zones using a Self-Organizing Map and relevant atmospheric variables and large-scale climate indices are incorporated as predictive regressors. Out-of-sample forecasting evaluations reveal that the KTARMA model delivers highly competitive predictive performance, achieving consistently lower mean squared errors across all identified zones compared to KARMA and $β$ARMA models.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04736v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04736v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04710",
+      "title": "Simulation-free Unbalanced Dynamic Optimal Transport with General Growth Penalty",
+      "authors": [
+        "Junda Ying",
+        "Yuxuan Wang",
+        "Bowen Yang",
+        "Peijie Zhou",
+        "Lei Zhang"
+      ],
+      "abstract": "Inferring cellular dynamics from unpaired single-cell snapshots requires modeling both state transitions and population growth or death. Unbalanced dynamic optimal transport (UDOT) addresses this by penalizing growth along transport paths, making the choice of growth penalty a key way to encode biological priors on proliferation and apoptosis. However, existing UDOT solvers either rely on computationally expensive NeuralODE simulations or depend on analytical solutions of conditional paths, restricting their efficiency solely to quadratic penalties, i.e. Wasserstein-Fisher-Rao (WFR) geodesics. To enable an efficient UDOT solver for general growth penalties, we first show that concave growth penalties lead to degenerate solutions where growth and transport are separated. We then introduce \\textbf{S}imulation-free \\textbf{U}nbalanced \\textbf{D}ynamic \\textbf{O}ptimal transport (SUDO), a simulation-free framework for UDOT with general non-quadratic convex growth penalties. SUDO learns the conditional paths and transport costs, solves the induced semi-coupling problem, and subsequently leverages unbalanced flow matching to achieve a simulation-free solution. On WFR benchmarks, SUDO matches the accuracy of efficient, analytical solution-driven algorithms while outperforming simulation-based methods in computational speed. Beyond WFR, SUDO supports asymmetric penalties that encode proliferation-dominant priors and produce more plausible trajectories and growth estimates on synthetic and single-cell datasets.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.QM"
+      ],
+      "primaryCategory": "cs.LG",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04710v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04710v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04633",
+      "title": "Time-dependent two-way partial AUC and partial Youden Index estimator for right censored data",
+      "authors": [
+        "Arpan Sanyal",
+        "Sudheesh Kumar KattumannilSudheesh Kumar Kattumannil",
+        "Ayon Ganguly"
+      ],
+      "abstract": "In medical research, it is often of interest to evaluate the predictive performance of a biomarker. Statistical approaches based on the Receiver Operating Characteristic (ROC) curve and its summary measures, such as the area under the curve (AUC) and the Youden index, are widely used to evaluate the prognostic performance of these biomarkers. In time-to-event studies, ROC analysis poses additional challenges due to change in disease status over time and the presence of censored individuals. To address these issues, time-dependent ROC curves were introduced. In this paper, we propose a non-parametric estimator of the time-dependent two-way partial AUC for right-censored data. We also discuss the partial Youden index and the associated optimal biomarker cutoff estimator for the right-censored data. We conduct an extensive simulation study to investigate the finite sample performance of the proposed estimators. The simulation study indicates that the proposed non-parametric estimators efficiently account for right censoring. Finally, we illustrate the proposed methods using two real data sets, one from the Primary Biliary Cirrhosis study and the other from the Molecular Taxonomy of Breast Cancer International Consortium trial.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME",
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04633v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04633v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04618",
+      "title": "Pricing rides as option contracts: guarantees and memberships under travel-time uncertainty",
+      "authors": [
+        "Mohamad Elmasri",
+        "Mingze Li",
+        "Yunran Wei"
+      ],
+      "abstract": "Modern ride-share platforms must commit to a price before a trip is taken, yet the realized fare depends on travel time that is uncertain at the moment of sale, which can occur days in advance. The upfront price thus decomposes into the expected fare and the premium on an insurance claim whose payoff is the shortfall between the realized and promised prices. This work computes the fair premium for such a claim, following from contingent-claim pricing. Recent advances in travel-time distribution modeling cast the asymptotic distribution of travel time as a Brownian motion on a metric graph carrying a cyclostationary travel-time process. We thus derive closed-form premiums under both a population and a route-conditional travel-time law. A single pricing equation then covers products of increasing informational difficulty, such as on-demand and scheduled rides and capped-membership and commuter products. To price on sparse data, we develop route and travel-time samplers and validate them out of sample on 2014 Quebec City GPS trips, where they reproduce the empirical trip-time distribution. We show that guarantee premiums are inexpensive, typically under 5% of the fare. Conditioning on the realized route roughly halves the premium while reducing tail risk. Analyzing membership abuse, we show that adverse selection acts precisely along the dimension the price fails to condition on, yielding a design principle: subsidies additive in the fare, such as a fixed per-ride discount, leave marginal incentives unchanged and are abuse-proof by construction, with deterministic closed-form cost.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.AP",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04618v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04618v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04608",
+      "title": "Visualizing Class Specific Heterogeneous Tendencies using R",
+      "authors": [
+        "Mariko Takagishi",
+        "Michel van de Velden"
+      ],
+      "abstract": "In this paper we introduce the R package mccca, which implements multiple-class cluster correspondence analysis (MCCCA) proposed in M.Takagishi et al., (2022). MCCCA is a statistical method that identifies and visualizes heterogeneous tendencies specific to ``classes'' (e.g., gender and nationality) in a low dimensional space. In MCCCA, two kinds of variables, external and active variables, are distinguished. External variables directly define classes whereas the active variables are used to derive class-specific clusters of observations (individuals). In this paper, we show how to apply MCCCA and how to visualize its results using mccca. We illustrate the procedure for performing MCCCA by applying it to two data sets.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.ME"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04608v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04608v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04604",
+      "title": "The Periodically Correlated Components of Measles in New York City using the Variable Band-pass Periodic Block Bootstrap",
+      "authors": [
+        "Anastazia Valachovic",
+        "Susan P. Opar",
+        "Edward Valachovic"
+      ],
+      "abstract": "Measles, a highly contagious, deadly virus, is at risk of losing its eradication status in the Unites States. Understanding the pattern, including seasonality, of measles could provide great benefit for forecasting, prevention, and public health preparedness as the virus re-emerges. The novel Variable Band-pass Periodic Block Bootstrap (VBPBB), which suppresses noise and interfering signals, is more efficient and statistically powerful to find periodic components compared to other existing methods. Using this method, we have found several significant periodic components in historical New York City measles cases which other methods were incapable of identifying. These findings give us a reusable method for understanding measles and other diseases and greater insight into what may occur should measles vaccine rates continue to fall.",
+      "published": "2026-09-04",
+      "updated": "2026-09-04",
+      "categories": [
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.AP",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04604v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04604v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04490",
+      "title": "When Quantization Breaks Memory: Recurrent-State Write-Back in Low-Precision Temporal Inference",
+      "authors": [
+        "Ismail Erbas",
+        "Xavier Intes",
+        "Vikas Pandey"
+      ],
+      "abstract": "Quantization is widely used to reduce the computational and memory demands of neural-network inference. In recurrent networks, however, the quantized state is stored and returned at the next time step, so the rule used to store that state can alter subsequent computations. Here, we introduce recurrent-state write-back to denote this rule and isolate its effect in a compact GRU encoder--decoder for fluorescence lifetime imaging, a molecular imaging modality used in quantitative biological imaging. A central task is estimating two lifetime parameters, the short-lived component τ1 and the long-lived component τ2, from high-noise time-resolved fluorescence signals. Holding the trained model fixed, replacing continuous state propagation with deterministic 4-bit state storage increases estimation errors for τ1 and τ2 by approximately 70x and 300x, respectively. Failure occurs when repeated small updates remain below the write threshold, leaving the stored state nearly fixed while the network continues to propose change. Error feedback, residual memory, and direction memory carry information from these suppressed updates across time and recover accuracy without retraining. Precision sweeps show that increasing state precision can worsen a fixed recurrent solution, while matched training shows that compatibility with the state interface can be learned. To test whether this behavior extends beyond the GRU, we repeat the post-training intervention in an independently trained LSTM, where coarse write-back reproduces the failure, error feedback restores accuracy, and state-specific interventions reveal greater sensitivity of the cell state than the hidden state. Our results establish recurrent-state write-back as a key determinant of low-precision recurrent dynamics and identify the state-storage interface as a central design consideration for quantized recurrent inference.",
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "categories": [
+        "cs.AI",
+        "cs.LG",
+        "physics.optics",
+        "q-bio.QM"
+      ],
+      "primaryCategory": "cs.AI",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04490v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04490v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04422",
+      "title": "Quantifying Impacts of Wildfire Smoke on Crop Yields in California",
+      "authors": [
+        "Astrid N. Hoefler",
+        "Robert B. Lund",
+        "J. Elliott Campbell"
+      ],
+      "abstract": "Climate change and increasingly severe wildfires pose significant threats to both people and ecosystems, yet little research has focused on the impacts of wildfires on crops. In addition to direct effects such as health risks to agricultural workers and crop damage, there is evidence that smoke may affect crop productivity and quality. This study aims to analyze the effects of wildfire smoke on crop production in Northern California. We quantified the relationship of particulate matter on grape yields using statistical regression models with a wide range of different climate and air quality predictor variables. Our analysis identifies an association between air quality deterioration due to wildfire smoke emissions and reduction in wine grape yields. For two of the three study sites, particulate matter emerged as a significant predictor variable in combination with temperature. Final models for Sonoma and Napa had R2 values of 0.79 and 0.66 respectively, suggesting a shift from climate only-controlled yields to wildfire and climate-controlled yields. This work sets the stage for the next generation of agronomic models that incorporate the growing threat of wildfire on agriculture production systems.",
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "categories": [
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.AP",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04422v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04422v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04418",
+      "title": "On tail-robust autocovariance matrix estimation for high-dimensional and potentially nonstationary time series",
+      "authors": [
+        "Haotian Xu",
+        "Stephane Guerrier",
+        "Runze Li",
+        "Yuan Ke"
+      ],
+      "abstract": "In this paper, we study the autocovariance matrix estimation and inference problems under heavy-tailedness, high-dimensionality, general nonlinear temporal dependence, and potentially nonstationarity of time series. We consider two types of tail-robust autocovariance matrix estimation methods: the element-wise Huber's $M$-estimator and a computationally more efficient element-wise truncated estimator. Both estimators are designed to achieve sharp error bounds in matrix max-norm. The nonasymptotic properties of these estimators are proved based on new variants of Bernstein-type inequalities under functional dependence for the potentially nonstationary processes which may be of independent interest. Moreover, we prove a high-dimensional Gaussian approximation result, as a limiting distribution, for our element-wise truncated autocovariance estimator. A Gaussian multiplier bootstrap result is also given to facilitate the practicality. Our theoretical results are nonasymptotic, which gives explicit error bounds in terms of the sample size, dimensionality, moments, and the strength of temporal dependence. Numerical evidence is provided to support our theoretical results. Finally, we illustrate the benefits of the proposed methodology for detecting change points in monthly macroeconomic data.",
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "categories": [
+        "stat.ME",
+        "math.ST"
+      ],
+      "primaryCategory": "stat.ME",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04418v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04418v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04400",
+      "title": "One-Shot Screening of Simulated Systems for Acceptability",
+      "authors": [
+        "Jinbo Zhao",
+        "David J. Eckman"
+      ],
+      "abstract": "We introduce a general-purpose framework for designing screening procedures for problems featuring a finite set of simulated systems, a.k.a. ranking-and-selection problems. The framework offers a novel perspective on screening in which decisions to retain or eliminate systems are based on confidence regions for the unknown problem instance rather than comparisons of estimated performances. Specifically, a system is retained if it has acceptable performance under some plausible configuration of response vectors contained in the confidence region. This perspective facilitates the design of procedures that guarantee to return either all acceptable systems, or each acceptable system, with high probability and accommodates many well-studied definitions of acceptability, including feasibility with respect to stochastic constraints and optimality with respect to one or more objectives. We further study a subclass of the framework that yields simple and computationally efficient screening procedures that often have lower-order time complexity than existing methods and naturally supports parallelization without loss of screening power. We demonstrate the effectiveness and efficiency of the procedures through numerical experiments.",
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "categories": [
+        "stat.AP"
+      ],
+      "primaryCategory": "stat.AP",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04400v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04400v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04356",
+      "title": "Blockchain-Enabled Secure Logging for Fiscal Electronic Mechanisms: Evaluation of the Greek eSEND and myDATA Tax Systems",
+      "authors": [
+        "Panagiotis Mavridis",
+        "Anargyros Baklezos",
+        "Christos Nikolopoulos"
+      ],
+      "abstract": "This paper analyzes the implementation of blockchain-based integrity mechanisms in Greek Fiscal Electronic Mechanisms (FEMs) and the central tax information system eSEND. The study examines the cryptographic architecture of fiscal devices, including Electronic Cash Registers, Fiscal Printers, Fiscal Signing Machines, and FEMAS devices, which implement double or triple hash-chain structures to ensure transaction immutability. The transmission protocol between fiscal devices and the central database is also evaluated with respect to encryption, sequential validation, and blockchain verification. In contrast, the architecture of Electronic Invoicing Provider Services and the myDATA central platform is analyzed, highlighting the absence of blockchain-based integrity guarantees. The comparison demonstrates that hardware-based fiscal mechanisms provide stronger guarantees for transaction completeness and tamper resistance than purely software-based invoicing infrastructures. The findings highlight architectural weaknesses in the current e-invoicing framework and propose improvements for ensuring transaction integrity in digital tax ecosystems.",
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "econ.EM"
+      ],
+      "primaryCategory": "cs.CR",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04356v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04356v1",
+      "doi": null
+    },
+    {
       "id": "2609.04136",
       "title": "Natural Disasters and the Nonprofit Sector",
       "authors": [
@@ -37,7 +524,7 @@
     },
     {
       "id": "2609.04018",
-      "title": "A location-invariant estimator of extremal quantile treatment effects for heavy-tailed distributions",
+      "title": "A Location-Invariant Estimator of Extremal Quantile Treatment Effects for Heavy-Tailed Distributions",
       "authors": [
         "Xin Yu",
         "Shuwei Huang",
@@ -49,15 +536,15 @@
       ],
       "abstract": "Quantile treatment effects (QTEs) measure the effect of a treatment on the distribution of an outcome, and their estimation at extreme quantile levels is of central interest in applications where the target quantiles lie far beyond the range of the data. For heavy-tailed potential outcomes, existing extremal QTE estimators rely on extrapolation combined with a causal extreme value index (EVI) estimator, but the resulting estimator is not invariant under a common location shift of the potential outcome distributions, even though the population QTE is. We address this issue in two steps. First, we adapt the location-invariant Fraga estimator of the EVI to the causal setting using inverse propensity score weighting. Second, we replace the original extrapolation formula with a difference-based scheme, under which the location parameter cancels when quantile differences are taken. The resulting QTE estimator is therefore location invariant. We establish the consistency and asymptotic normality of the proposed extremal QTE estimators, and provide a consistent variance estimator, leading to asymptotically valid inference. A simulation study confirms the location invariance, the stability with respect to the threshold, and the coverage of the proposed methods.",
       "published": "2026-09-03",
-      "updated": "2026-09-03",
+      "updated": "2026-09-04",
       "categories": [
         "cs.LG",
         "stat.AP",
         "stat.ME"
       ],
       "primaryCategory": "cs.LG",
-      "pdfUrl": "https://arxiv.org/pdf/2609.04018v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.04018v1",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04018v2",
+      "arxivUrl": "http://arxiv.org/abs/2609.04018v2",
       "doi": null
     },
     {
@@ -195,6 +682,35 @@
       "primaryCategory": "cs.CV",
       "pdfUrl": "https://arxiv.org/pdf/2609.03475v1",
       "arxivUrl": "http://arxiv.org/abs/2609.03475v1",
+      "doi": null
+    },
+    {
+      "id": "2609.04278",
+      "title": "Towards AI-Driven Nanomedicine Discovery: A Benchmark and Multimodal Learning Framework for Nano Self-Assembly Prediction",
+      "authors": [
+        "Quan Hao",
+        "Mengyue Fan",
+        "Zifan Dong",
+        "Jianduo Zhao",
+        "Changhao Xiao",
+        "Shangqing Jiao",
+        "Hao Zhang",
+        "Yudong Wang",
+        "Fei Xia",
+        "Jigang Wang",
+        "Liguo Zhang",
+        "Chong Qiu"
+      ],
+      "abstract": "Nano self-assembly organizes molecular components into bioactive nanoscale structures. Self-assembled nanoparticles (NAPs) derived from Chinese herbal formulas and applications such as anti-lung-cancer therapy demonstrate the substantial potential of self-assembly for nanomedicine discovery. Yet discovery still relies on costly wet-lab screening, while existing machine learning approaches lack standardized tasks, effective pairwise compatibility modeling, and public benchmarks with unified evaluation. To address these limitations, we formalize NSA prediction as a binary classification task for predicting self-assembly between molecular pairs and then establish NSA-Bench, the first public benchmark with curated molecular combinations, experimental conditions, self-assembly labels, and standardized evaluation protocols. We further develop NSA-Net, an interaction-aware multimodal framework that integrates complementary molecular evidence from graph topology, sequence semantics, and physicochemical descriptors to learn molecular-pair representations for self-assembly prediction. Extensive experiments on NSA-Bench show that NSA-Net achieves a ROC-AUC of $0.9470\\pm0.0112$ (Small) and $0.9492\\pm0.0062$ (Large). On the Small track, it surpasses the strongest machine-learning and graph-based baselines by 3.9 and 17.1 percentage points, respectively. Representation analyses reveal interpretable molecular characteristics associated with self-assembly prediction captured by the learned representations. Moreover, an NSA-Agent case study further demonstrates how NSA-Net predictions can support formulation refinement through experimental-condition-aware reasoning. Our code is available at https://github.com/developer-hq/NSA-Net.",
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "categories": [
+        "q-bio.QM",
+        "stat.ML"
+      ],
+      "primaryCategory": "q-bio.QM",
+      "pdfUrl": "https://arxiv.org/pdf/2609.04278v1",
+      "arxivUrl": "http://arxiv.org/abs/2609.04278v1",
       "doi": null
     },
     {
@@ -469,524 +985,10 @@
       "pdfUrl": "https://arxiv.org/pdf/2609.02527v1",
       "arxivUrl": "http://arxiv.org/abs/2609.02527v1",
       "doi": null
-    },
-    {
-      "id": "2609.02495",
-      "title": "Big data, differential privacy, and national statistical organisations",
-      "authors": [
-        "James Bailie"
-      ],
-      "abstract": "Differential privacy (DP) has emerged in the computer science literature as a measure of the impact on an individual's privacy resulting from the publication of a statistical output such as a frequency table. This paper provides an introduction to DP for official statisticians and discuss its relevance, benefits, and challenges from a National Statistical Organisation (NSO) perspective. We motivate our study by examining how privacy is evolving in the era of big data and how this might prompt a shift from traditional statistical disclosure techniques used in official statistics--which are generally applied on a cell-by-cell or table-by-table basis--to formal privacy methods, like DP, which are applied from a perspective encompassing the totality of the outputs generated from a given dataset. We identify an important interplay between DP's holistic privacy risk measure and the difficulty for NSOs in implementing DP, showing that DP's major advantage is also DP's major challenge. This paper provides new work addressing two key DP research areas for NSOs: DP's application to survey data and its incorporation within the Five Safes framework.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.AP",
-        "cs.CY"
-      ],
-      "primaryCategory": "stat.AP",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02495v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02495v1",
-      "doi": "10.3233/SJI-200685"
-    },
-    {
-      "id": "2609.02445",
-      "title": "An adaptive time-tree transition kernel for Bayesian phylogenetic inference",
-      "authors": [
-        "Marius Brusselmans",
-        "Guy Baele",
-        "Samuel L. Hong",
-        "Jiansi Gao",
-        "Marc A. Suchard",
-        "Andrew Rambaut",
-        "Luiz Max Carvalho"
-      ],
-      "abstract": "Bayesian phylogenetic and phylodynamic analyses can be very time-consuming, owing to the combination of complex models that are used to estimate key parameters from increasingly large genomic data sets and their associated metadata. The use of high-performance computer hardware can -- to a certain extent -- alleviate the computational burden and markedly decrease the time to results. Still, even converging to the posterior can be a lengthy endeavour, with the burn-in aspect of such analyses potentially taking days or even weeks for large data sets. One of the key aspects that hampers performance in Bayesian phylogenetic inference is the efficiency with which tree topology proposals explore tree space. We here propose a novel adaptive tree transition kernel, which we call `subTreeLeap' (STL), which involves modifying the phylogeny by walking along patristic distance paths in the tree according to an adaptable radius parameter. STL is a general proposal, which can be used with contemporaneous or time-calibrated sequence data, being particularly suited to the latter due to respecting temporal precedence constraints. We carefully assess its impact on convergence and statistical mixing of the exploration of posterior tree space, by comparison to replicate ``golden runs'' obtained from lengthy analyses of empirical data under standard tree transition kernels. We find that STL successfully explores the same posterior tree space as standard kernels, but often does so in a more efficient manner. We discuss limitations as well as future potential improvements to STL that could substantially increase the speed at which Bayesian phylogenetic inferences are obtained.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "q-bio.PE",
-        "q-bio.QM"
-      ],
-      "primaryCategory": "q-bio.PE",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02445v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02445v1",
-      "doi": null
-    },
-    {
-      "id": "2609.02332",
-      "title": "A simple derivation of the Kalman filter",
-      "authors": [
-        "Marco Chiani",
-        "Giovanni Petris",
-        "Moe Z. Win"
-      ],
-      "abstract": "In this lecture note, we present a concise and self-contained derivation of the discrete-time Kalman filter equations that requires only a basic understanding of least squares estimation. The treatment is designed to minimize mathematical overhead while preserving both rigor and generality.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "math.OC",
-        "eess.SP",
-        "eess.SY",
-        "math.ST",
-        "stat.ME"
-      ],
-      "primaryCategory": "math.OC",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02332v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02332v1",
-      "doi": null
-    },
-    {
-      "id": "2609.02963",
-      "title": "SurfSpec: Enhancing Off-Target-Agnostic Specificity by Bounding Pocket-Ligand Geometric Mismatch",
-      "authors": [
-        "Minyeong Hwang",
-        "Yoorim Gang",
-        "Ziseok Lee",
-        "Wooyeol Lee",
-        "Young Bin Park",
-        "Jae-Mun Choi",
-        "Kyungsu Kim",
-        "Eunho Yang"
-      ],
-      "abstract": "Lead optimization in structure-based drug design aims to improve target binding while avoiding unintended interactions with off-target pockets. However, existing affinity-driven methods do not explicitly control specificity, whereas current specificity-aware approaches commonly require prior knowledge of off-target structures. We address off-target-agnostic specificity-aware lead optimization by analyzing the geometric mismatch between a ligand and the target pocket. We provide a conservative specificity lower bound for geometrically separated off-targets without requiring access to off-target structures. By metricizing pocket--ligand mismatch, the triangle inequality shows that reducing target--ligand mismatch improves a conservative lower bound on mismatch to a separated off-target class, which can be translated into a specificity lower bound through an empirical geometry--affinity calibration. Motivated by this analysis, we introduce SurfSpec, an off-target-agnostic lead optimization framework that iteratively grows ligands toward under-occupied regions of the target pocket surface. SurfSpec alternates between linker generation toward selected target-surface patches, which provides geometric pseudo-labels, and refinement under a pocket-conditioned ligand prior, which restores these pseudo-labels into valid ligands. On the CrossDocked2020 test set, SurfSpec reduces geometric mismatch and outperforms evaluated off-target-agnostic lead optimization baselines in empirical specificity, while maintaining competitive target-affinity improvement.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "q-bio.QM",
-        "cs.LG"
-      ],
-      "primaryCategory": "q-bio.QM",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02963v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02963v1",
-      "doi": null
-    },
-    {
-      "id": "2609.02087",
-      "title": "Efficient Screening Designs for Expensive Black-box Models with Qualitative and Quantitative Factors",
-      "authors": [
-        "Difan Song",
-        "V. Roshan Joseph"
-      ],
-      "abstract": "Computationally expensive black-box models often involve a large number of input factors with complex interactions and varying importance. Experimental design techniques can be used for quickly identifying the important factors, which can make the optimization of a complex computer model or the training of an expensive machine learning model more efficient. Existing screening designs for black-box models focus mainly on continuous factors, with the maximum one-factor-at-a-time (MOFAT) design being a recent example. In this work, we extend the design to incorporate multiple types of factors, including nominal, ordinal, and discrete-numeric. We first identify the properties leading to optimal screening, where qualitative and quantitative factors should be treated differently. Based on these properties, we propose practical algorithms to efficiently construct MOFAT designs for all types of factors. The usefulness of the design is demonstrated by both numerical experiments and an application to hyperparameter tuning in machine learning models.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02087v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02087v1",
-      "doi": null
-    },
-    {
-      "id": "2609.02078",
-      "title": "Data-Adaptive Rerandomization for 2K Factorial Designs",
-      "authors": [
-        "Tingxuan Han",
-        "Ke Deng"
-      ],
-      "abstract": "Factorial designs allow simultaneous estimation of multiple main effects and interactions, but covariate imbalance can substantially reduce estimation precision. Existing rerandomization methods improve covariate balance yet do not fully exploit heterogeneous priorities across factorial effects or effect-specific covariate importance. To address these limitations, this paper proposes a data-adaptive rerandomization framework for $2^K$ factorial designs. We first develop an oracle criterion that jointly incorporates researchers' priorities over factorial effects and effect-specific covariate importance, enabling precision gains with guaranteed lower bounds. To make the oracle criterion implementable, we develop a data-adaptive procedure that learns effect-specific covariate importance from a random subset of units and applies an estimated oracle criterion to the remaining units. Unlike existing two-stage rerandomization methods for treatment-control experiments, our procedure accommodates multiple factorial effects and requires no auxiliary dataset. Under a finite-population framework, we establish design-based asymptotic theory and show that the proposed procedure preserves the oracle design's precision-prioritization property and, under suitable conditions, achieves the same asymptotic precision as the oracle design. Numerical studies demonstrate substantial efficiency gains over existing rerandomization methods.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02078v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02078v1",
-      "doi": null
-    },
-    {
-      "id": "2609.02032",
-      "title": "COSTA: Covariance-Optimized Design and Causal Inference under Network-Temporal Interference",
-      "authors": [
-        "Qianyi Chen",
-        "Bo Li",
-        "Yongli Qin",
-        "Jinyong Ma"
-      ],
-      "abstract": "Experiments on networks observed over time face network spillovers, temporal carryover, and dependence deliberately introduced by the design. We propose COSTA---Covariance-Optimized Spatiotemporal Treatment Allocation---a joint Bernoulli design for unit--time assignments. Under common treatment marginals and a nonnegative linear network--temporal exposure model, Horvitz--Thompson bias for the sustained all-treated versus all-control contrast is exactly the negative expected weight of an assignment cut. A covariance-level variance envelope yields an MSE bound that can be optimized directly over assignment covariance. To scale this design, we introduce a thresholded-Gaussian Kronecker parameterization that mirrors the network and temporal exposure operators while preserving valid Bernoulli marginals. We next develop inference theory for the joint effects of designed treatment dependence and interference-induced outcome dependence. Canonical correlations between latent blocks generating separated HT contributions supply the coefficients required by graph-$ψ$ central limit and network-HAC theory; a spectral-floor and far-row-mass condition gives a primitive sufficient check. The framework covers sparse, block, Kronecker, locally factored, and other structured covariance sequences satisfying these conditions. Semi-synthetic RetailRocket and MovieLens experiments show substantial default-setting RMSE reductions and well-calibrated model-assisted design-centered intervals across linear, nonlinear, and demand-substitution outcome surfaces.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.02032v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.02032v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01973",
-      "title": "Testing for trends in online experiments",
-      "authors": [
-        "Chris Haulk",
-        "Lee Richardson",
-        "Jacopo Soriano"
-      ],
-      "abstract": "Time-varying treatment effects can be estimated with linear regression paired with jackknife confidence intervals. In experiments at a large online video platform, the test based on this estimator is not much less powerful than modern tests for monotonic trends. If you suspect trends in your online experiments, consider using this estimator.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01973v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01973v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01968",
-      "title": "Sequential Certification of Threshold Decisions in Rare-Event Risk Prediction",
-      "authors": [
-        "Hui-Mean Foo",
-        "Yuan-chin Ivan Chang"
-      ],
-      "abstract": "Rare clinical outcomes pose a difficulty deeper than ordinary class imbalance: a penalized logistic model can return finite, stable-looking coefficients before the data support a reliable threshold decision. We formulate the accrual question as decision-targeted sequential certification. On a prespecified finite monitoring schedule and target set, asymptotic prediction bands are adjusted for simultaneous coverage, and certification is assessed only among profiles that might be referred, so that a large low-risk majority cannot trigger an uninformative stop. Under the working rare-event logistic model and stated regularity conditions, each certified decision is asymptotically model-conditionally correct with probability at least \\(1-α\\) over the schedule, and the effective information scales with the number of genuine events. Simulations and a US linked birth/infant-death application illustrate the gap between a model that is merely estimable and one whose decisions are certifiable: the whole-population rule stopped while more than half of referral-relevant profiles remained ambiguous, whereas the decision-targeted rule did not certify by the 300{,}000-birth horizon despite stable temporal validation. Regularization makes a rare-event model estimable but does not substitute for genuine rare-event information.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.AP"
-      ],
-      "primaryCategory": "stat.AP",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01968v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01968v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01958",
-      "title": "Merging Modal Clusters via Significance Assessment",
-      "authors": [
-        "Yong Wang",
-        "Shengwei Hu"
-      ],
-      "abstract": "To deal with superfluous clusters and to reduce the number of clusters as often desired in practice, a modal cluster merging procedure is proposed. Based on some new properties established in this paper for Morse functions, the procedure merges clusters in a sequential manner without causing unnecessary density distortion. Each cluster is evaluated for its significance relative to the other clusters, using the Kullback-Leibler divergence or its log-likelihood approximation, by truncating the density for the cluster at an appropriate level. The least significant cluster is then merged into one of its adjacent clusters, using the novel concept of cluster adjacency defined in this paper. The resulting hierarchical clustering tree is useful for determining the number of clusters, as may be preferred by a specific user or in a general, meaningful manner. Numerical studies show that the new procedure deals well with difficult clustering problems and often produces intuitively appealing and numerically more accurate clustering results, as compared with several other popular clustering methods in the literature.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01958v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01958v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01954",
-      "title": "A staggered seamless dose-optimization design for co-developing monotherapy and combination therapy",
-      "authors": [
-        "Masahiro Kojima",
-        "Kentaro Takeda",
-        "Ying Yuan"
-      ],
-      "abstract": "Contemporary oncology drug development increasingly requires efficient dose-optimization strategies that evaluate monotherapy (Mono) and combination therapy (Combo) while balancing activity, efficacy, and tolerability. We propose a staggered seamless phase I/II design for settings in which a novel agent is evaluated alone and in combination with an established therapy. In phase I, Mono dose finding begins first, and Combo subtrials can be opened adaptively once a prespecified combination-initiation signal based on early clinical or biological information is observed. Dose assignment uses a model-assisted rule based on toxicity and early activity, with backfilling at tolerable and potentially promising regimens. At the end of phase I, two candidate regimens are selected from the evaluated Mono and Combo regimens using an efficacy-toxicity utility based on accumulated toxicity and treatment-response data. Phase II seamlessly carries forward patients treated at the selected regimens, enrolls additional patients as needed, and applies Bayesian futility and efficacy stopping boundaries to identify a final recommended optimal biological dose (OBD). Simulation studies showed that the proposed design shortened phase I trial duration relative to the comparator designs while maintaining competitive OBD-selection performance and acceptable safety. The seamless phase II component further reduced the need for additional enrollment and supported efficient final OBD selection.",
-      "published": "2026-09-02",
-      "updated": "2026-09-02",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01954v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01954v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01950",
-      "title": "Bigraphical Matérn-Whittle (BMW) Processes for Fast Inference of Big Multivariate Spatial Data on General Domains",
-      "authors": [
-        "Debangan Dey",
-        "Alokesh Manna",
-        "Christopher J. Geoga"
-      ],
-      "abstract": "Large spatial data sets now record many correlated variables at many thousands of locations, often on domains where Euclidean distance misrepresents proximity. The central difficulty is modelling the cross-variable dependence jointly while retaining variable-level interpretation. We introduce the bigraphical Mat'ern-Whittle process, a multivariate Gaussian process that resolves this with two graphs. A spatial graph generates the Mat'ern structure of each variable through a fractional power of a graph Laplacian, so the process is valid on any topology, with per-variable range, smoothness and amplitude. A directed acyclic variable graph encodes the scientific structure: we prove that each absent edge yields an exact conditional independence between the corresponding fields. We further prove that the operator determinant does not involve the cross-dependence coefficients, which keeps matrix-free likelihood evaluation and Bayesian learning of the variable graph tractable at scale. Estimation requires only sparse matrix-vector products and scales to tens of millions of space-variable pairs. In simulations the method recovered parameters and graphs accurately, remained robust under misspecification, and halved held-out prediction error on a non-convex domain. In a spatial transcriptomics section with 19,809 cells and 1,122 genes, fitted in 75 minutes on a laptop, borrowing across the learned gene graph reduced held-out prediction error by 50 to 91 percent. Theoretical challenges, such as the achievable efficiency of estimating the variance of the nugget, are also explored.",
-      "published": "2026-09-01",
-      "updated": "2026-09-03",
-      "categories": [
-        "stat.ME",
-        "stat.AP"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01950v2",
-      "arxivUrl": "http://arxiv.org/abs/2609.01950v2",
-      "doi": null
-    },
-    {
-      "id": "2609.01943",
-      "title": "Headline Estimation with Multiple Research Designs",
-      "authors": [
-        "Vod Vilfort"
-      ],
-      "abstract": "To study a scalar parameter, a researcher may consider multiple research designs. Based on the evidence across designs, the researcher may wish to formulate a headline estimate of the parameter. I examine how to choose this headline when it is unclear which design is most appropriate for studying the parameter. I model this setting by assuming that (i) exactly one of the designs is valid for the parameter and (ii) the researcher has ambiguity about which design is valid, represented by a class of priors over the candidate designs. To account for ambiguity, I propose reporting the headline estimate that minimizes the worst-case posterior risk over the class of priors. In three applications, I show cases where accounting for ambiguity materially affects the quantitative conclusion and cases where an existing headline is already close to optimal.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "econ.EM"
-      ],
-      "primaryCategory": "econ.EM",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01943v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01943v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01941",
-      "title": "Neural Networks Learning the Radon--Nikodym Derivative: Empirical Option Pricing in Incomplete Markets",
-      "authors": [
-        "Ziyuan Zhang",
-        "Kiseop Lee"
-      ],
-      "abstract": "In incomplete markets, no-arbitrage (NFLVR) guarantees the existence, not the uniqueness, of an equivalent local martingale measure (ELMM): unhedgeable risks (jumps, stochastic volatility) admit a whole family of equivalent measures, and asset dynamics alone cannot pin down the one the market selects. We characterize the identifiability of $Q$ from option data and propose a measure that is identifiable from data yet prices any claim consistently. The key boundary is an ``identification wall'': European options identify only the terminal marginal, while out-of-sample tails and path/joint structure require instruments matched to the priced risk (variance or higher-moment swaps, path-dependent claims). Within this view, minimum-relative-entropy weighted Monte Carlo (WMC) is the optimal baseline for the marginal; we generalize it to a full path-space measure change parameterized by a neural network on physical scenarios---XiNet---which learns $ξ=\\mathrm{d}\\mathbb{Q}/\\mathrm{d}\\mathbb{P}$ directly from 8 model-free path features, with option prices as a soft constraint. On European (marginal) pricing XiNet matches but does not surpass WMC, and both are bound by the identification wall out-of-sample. On path-dependent claims the picture reverses: calibrated on the same European surface, per-marginal methods fail structurally (an ATM forward-start is mispriced by $\\sim+100\\%$), whereas XiNet's single self-consistent measure keeps the bias to $+0.3\\%$, beating maximum-entropy WMC ($-24\\%$), because $ξ=f_θ(\\text{path features})$ captures joint structure Europeans cannot constrain. Identification is thus risk-specific, and XiNet is a single measure that absorbs available instruments and prices all claims consistently.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "stat.AP"
-      ],
-      "primaryCategory": "stat.AP",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01941v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01941v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01919",
-      "title": "Uncertainty Quantification of State Variables Trajectories in the Context of Inverse Problems: An Approach from Bayesian Inference and FDA",
-      "authors": [
-        "Luis Alejandro Baena-Marín",
-        "Juan Daniel Molina",
-        "Juan Camilo Bermúdez-Colorado",
-        "Nicolás Moreno"
-      ],
-      "abstract": "In this article, we address the problem of uncertainty quantification of state variables in the context of inverse problems. Inverse problems are associated with phenomena that can be represented through ordinary or partial differential equations, for which observations or data are available, but the values of the parameters that characterize the equations, the initial or boundary conditions are not known. Currently, the literature offers very few alternatives for analyze the propagation of uncertainty of state variables, which are limited to constructing pseudo-credible regions or quantifying their uncertainty at isolated points. We propose a methodology that combines tools of Bayesian inference, with Hamiltonian Monte Carlo sampling employed for efficient posterior exploration, and functional data analysis, specifically the Modified Band Depth method, to determine credible regions for the trajectories of the state variables throughout the time horizon of interest. We expose a methodology validation through a simulation study, which shows that our proposal captures a higher proportion of state variable trajectories than traditional pointwise analysis methods, our proposal generated credible regions that contained the true trajectory of the state variables 96.4\\% of the times, versus 80\\% that the regions of the pointwise method did. Furthermore, we demonstrate its application to a non-trivial model associated with a neurological phenomenon, for which the methodology effectively captures the time-dependent dynamics of the state variables.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01919v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01919v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01842",
-      "title": "Conditional Distribution Estimation Given Functional Covariates Using Deep Operator Networks",
-      "authors": [
-        "Bingqing Hu",
-        "Ran Zou",
-        "Bin Nan"
-      ],
-      "abstract": "Functional linear models are commonly used for analyzing functional data with scalar responses, particularly for modeling the conditional mean of the response given functional covariates. In this work, we extend the traditional scalar-on-function regression in two major aspects: 1. estimating the conditional distribution function instead of a particular characteristic such as the conditional mean; 2. considering an arbitrary operator without imposing functional linearity or any model assumption. We use a likelihood approach for the conditional hazard function and apply convolutional neural networks to approximate the effects of functional inputs and estimate the conditional distribution using deep operator networks. Through simulations and a real world data example, we show the desirable robustness of the proposed method in comparison with the mean regression neural networks, demonstrating that our approach achieves better conditional distribution estimation and interval prediction in complex data settings.",
-      "published": "2026-09-01",
-      "updated": "2026-09-03",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01842v2",
-      "arxivUrl": "http://arxiv.org/abs/2609.01842v2",
-      "doi": null
-    },
-    {
-      "id": "2609.01804",
-      "title": "Robust Variance Estimation in Linear Regression: A Projection-Geometry Perspective",
-      "authors": [
-        "Yanping Chen"
-      ],
-      "abstract": "Inference in linear regression commonly treats OLS residuals as proxies for unobserved errors. This approximation can fail when the regression projection is nonlocal relative to the error-dependence structure. Residualization then shifts covariance information across observations and clusters, while conventional heteroskedasticity-consistent (HC) and cluster-robust variance estimators (CRVE) retain only diagonal or within-cluster residual moments and may therefore understate sampling uncertainty. This paper develops a projection-geometry framework for robust variance estimation. The variance of the OLS estimator is represented exactly as a Riesz functional of latent covariance blocks, and observable residual moments are linked to the target through a linear operator determined by the full regression projection. This formulation reduces variance estimation to a linear inverse problem. I propose a Riesz variance estimator that combines within- and cross-cluster residual moments. Conventional HC and CRVE emerge as restricted approximations whose validity depends on negligible projection spillovers. The estimator remains well defined when cluster-specific leverage matrices are singular and is computed by an iterative algorithm that avoids explicit matrix inversion. Simulations show substantial undercoverage by conventional methods under projection spillovers, whereas the proposed estimator restores near-nominal coverage. In an application to colonial governor promotions, the correction changes the significance of four of five reported coefficients.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "econ.EM"
-      ],
-      "primaryCategory": "econ.EM",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01804v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01804v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01783",
-      "title": "Robust Bayesian Inference for Unnormalized Models with Mixed-Domain Data",
-      "authors": [
-        "Jiongran Wang",
-        "Debdeep Pati",
-        "Anirban Bhattacharya"
-      ],
-      "abstract": "Many statistical models involve parameter-dependent normalizing constants that are computationally intractable, creating substantial obstacles to standard Bayesian inference. Although existing likelihood-based algorithms can often circumvent these constants, their uncertainty quantification may be poorly calibrated under model misspecification. To address these challenges, we propose SME-BETEL, a semiparametric Bayesian framework that combines score matching estimating equations with Bayesian exponentially tilted empirical likelihood. The resulting posterior avoids evaluation of normalizing constants and does not require learning-rate calibration. We establish consistency and asymptotic normality of the score matching estimator, and prove a Bernstein-von Mises theorem for the SME-BETEL posterior. These results show that SME-BETEL credible sets are asymptotically calibrated to the sampling variability of the score matching estimator, yielding valid frequentist coverage under model misspecification. We further develop a new score matching criterion for mixed-domain data, extending SME-BETEL to models whose observations combine components from different sample spaces. This construction enables robust Bayesian inference for mixed-domain doubly-intractable models, including preferential sampling models with an intractable spatial normalizing integral. Simulation studies show that SME-BETEL remains competitive under correct specification and substantially improves uncertainty quantification under misspecification. An ozone-monitoring application further demonstrates the utility of the mixed-domain construction for spatial preferential modeling.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "stat.ME",
-        "stat.ML"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01783v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01783v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01514",
-      "title": "A Sensor-Adaptive Incremental Learning Framework for Artifact Detection in Satellite Precipitation Data",
-      "authors": [
-        "Andres F. Monsalve",
-        "Hernan A. Moreno",
-        "Christian D. Kummerow"
-      ],
-      "abstract": "Historically, retrieving rainfall data from satellite imagery has been the domain of space agencies. However, in recent years, the development of cheaper, more compact satellites (SmallSats) capable of detecting rainfall proxies has led to a significant increase in private-sector initiatives for satellite launch and surface precipitation products. This rapid growth has yet to be matched by data validation efforts. Consequently, the need for a robust tool to detect anomalies in near-real-time data before it is disseminated to the public has become critical. In this paper, we present the development of an anomaly-detection system to identify artifacts in global satellite-based rainfall products. The developed framework leverages pre-trained computer vision models and incorporates scarce human-labeled data to detect specific anomalies. Our proposed anomaly detection strategy is tested on data from the Special Sensor Microwave Imager (SSMI) and the Special Sensor Microwave Imager/Sounder (SSMIS). Results demonstrate the efficacy of our approach at separating regular orbits from artifact-containing orbits for each satellite, with performance comparable to state-of-the-art in-place methods. Additionally, the framework offers explainability and the capacity for iterative refinement following false-positive or false-negative classifications.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "physics.ao-ph",
-        "cs.CV",
-        "stat.AP"
-      ],
-      "primaryCategory": "physics.ao-ph",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01514v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01514v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01467",
-      "title": "Which Policy Works, and Where? Estimation and Inference for State-Level Treatment Effects in Difference-in-Differences",
-      "authors": [
-        "Nichole Austin",
-        "Sunny R. Karim",
-        "Erin Strumpf",
-        "Matthew D. Webb"
-      ],
-      "abstract": "Policies with a common objective and implementation date may differ in details or context. We distinguish the aggregate average treatment effect on the treated (ATT) from sub-aggregate ATTs defined by implementation cohort, jurisdiction, period, or policy type. UN-DID and DID-INT, two DiD estimators that construct jurisdiction-by-time effects, estimate these ATTs under parallel-trends conditions matched to the aggregation. In CPS placebo-law simulations, randomization inference is generally well-sized, though some jurisdiction-specific tests are conservative. The jackknife can be undefined for sub-aggregate ATTs; when defined, it over-rejects with few treated or comparison jurisdictions. Estimands and inference methods should match the policy question and implementation setting.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "econ.EM"
-      ],
-      "primaryCategory": "econ.EM",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01467v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01467v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01435",
-      "title": "Gaussian Processes on Directed Metric Graphs",
-      "authors": [
-        "David Bolin",
-        "Alexandre de Bustamante Simas",
-        "Erik Karlsson Strandh",
-        "Jonas Wallin"
-      ],
-      "abstract": "We introduce a statistical framework for Gaussian fields indexed at arbitrary edge locations on general compact directed metric graphs. The construction is based on a stochastic differential equation with a first-order operator and conditions at the vertices. We characterise well-posedness and identify the covariance reproducing kernel Hilbert space. We also connect the proposed framework to earlier stream-network models, showing that these arise from the same system under particular boundary conditions, and introduce new boundary conditions that yield more physically realistic processes. The differential-equation representation enables computationally efficient inference and prediction. This makes the method applicable to large data sets without approximation. Applications to temperature modelling on river networks and traffic speeds on road networks illustrate the framework, including the computational efficiency and improved performance under physically informed vertex conditions.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "stat.ME"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01435v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01435v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01434",
-      "title": "Score-Based Generative Data Assimilation for Integrating Aggregated Surveillance Data into Agent-Based Models in Epidemic Tracking",
-      "authors": [
-        "Siming Liang",
-        "Jacob Hauck",
-        "Minglei Yang",
-        "Adam Spannaus",
-        "Heidi Hanson",
-        "Guannan Zhang"
-      ],
-      "abstract": "Reliable epidemic monitoring often requires inferring regional infection burden and transmission heterogeneity from noisy, spatially aggregated, and potentially sparse surveillance data. Agent-based models (ABMs) are attractive for this task because they represent individual behavior, contact heterogeneity, and localized interventions, but these same features make them difficult to calibrate online. We develop a generative AI-based data-assimilation (GenDA) framework for partially observed epidemic ABMs that estimates both the epidemic state and a heterogeneous parameter field while respecting the gap between observable macrostates and latent agent-level microstates. GenDA combines a training-free, score-based generative update for macrostate correction with a direct parameter update based on macrostate discrepancies, followed by a macro-micro reassignment step that restores consistency with the ABM. In controlled and geographically explicit synthetic experiments, the framework recovers regional epidemic burden, dominant hotspot structures, and effective transmission heterogeneity from aggregated observations, while improving post-assimilation forecasts relative to state-only assimilation.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "math.NA",
-        "q-bio.QM"
-      ],
-      "primaryCategory": "math.NA",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01434v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01434v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01688",
-      "title": "On the discretization of the object space in inverse problems with application to cryo-electron microscopy",
-      "authors": [
-        "Gilles Mordant",
-        "Luke Evans",
-        "David Silva-Sánchez",
-        "Pilar Cossio",
-        "Roy Lederman"
-      ],
-      "abstract": "In many inverse problems, the aim is to recover a probability distribution on a latent (or object state) space from indirect, noisy observations. When the observations can be modelled as noisy samples from the mixing latent distribution, the recovery problem is a deconvolution problem on the space of probability measures. A common strategy is to fix a finite set of candidate points and estimate a weight for each, turning the problem into a finite-dimensional concave maximum likelihood problem on the simplex. We study the combined effect of this discretization and of the noise in the context of cryo-electron microscopy (cryo-EM), where the candidate points are biomolecular conformations and the weights describe the relative frequency of each conformation. Our results pertain to both statistical and algorithmic aspects of the estimator. We analyze the weight-recovery problem in which the candidate states and their likelihoods are known. A nearby pair of candidates forces a near-null direction. More generally, the grid and the noise level impose a uniform lower bound on the achievable Kullback--Leibler divergence between observation densities, even with infinite data. The finite-grid estimator is asymptotically normal when its population target is in the interior of the simplex; at a boundary target, its limit is a cone-projected Gaussian. Finally, the exact proximal form of Expectation--Maximization leads to a global high-noise comparison between an early iterate and a KL-penalized likelihood, without a basin assumption or a linearization of the recursion. Tests on synthetic images of the Hsp90 molecule illustrate the theoretical findings and translate them into practical guidelines for interpreting reweighted ensembles.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "stat.ME",
-        "math.ST"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01688v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01688v1",
-      "doi": null
-    },
-    {
-      "id": "2609.01684",
-      "title": "A mechanistic modeling framework to interpret ACTH stimulation tests across HPA axis adaptation states and glucocorticoid feedback dynamics",
-      "authors": [
-        "Mamta Yadav",
-        "Phool Singh"
-      ],
-      "abstract": "The hypothalamic pituitary adrenal (HPA) axis is a key regulatory system coordinating endocrine responses to physiological and psychological stress. While the ACTH stimulation test remains a cornerstone of adrenal function assessment, its interpretation is complicated by the dynamic and adaptive nature of the HPA axis under chronic stress exposure. In particular, prolonged stress induces glandular remodeling, glucocorticoid receptor (GR) resistance and delayed feedback recovery, all of which may alter test outcomes without indicating primary adrenal failure. In this study, we present a mechanistic modeling framework that integrates hormonal kinetics, feedback inhibition and functional mass adaptation of the corticotroph and adrenal compartments. We simulate the HPA axis over $180$ days encompassing three phases - baseline, chronic stress and recovery, while introducing a time varying GR resistance function to mimic feedback desensitization and its resolution. Using this framework, we evaluate both low dose ($1 μg)$ and high dose ($250 μg)$ ACTH stimulation tests across physiological phases. Our simulations show that cortisol responses are highly sensitive to both the magnitude and timing of stress exposure and that ACTH responsiveness is phase dependent and often blunted during recovery due to persistent feedback resistance. Low dose ACTH testing more reliably reflects partial adrenal adaptation, while high dose tests risks masking dysfunction due to supraphysiological drive. These results highlight the limitations of static testing paradigms and suggest that accounting for glandular plasticity and GR feedback dynamics is essential for effective endocrine diagnosis particularly in stress related or treatment induced adrenal disorders.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "q-bio.QM",
-        "math.DS"
-      ],
-      "primaryCategory": "q-bio.QM",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01684v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01684v1",
-      "doi": "10.1016/j.compbiomed.2025.111173"
-    },
-    {
-      "id": "2609.01228",
-      "title": "On the interpretation of the kinetics of ligand-receptor binding",
-      "authors": [
-        "David Colquhoun",
-        "James P Higham"
-      ],
-      "abstract": "When the rates of ligand binding are measured by methods such as surface plasmon resonance, it is common practice to use the observed rate constants for the onset and offset of binding to estimate an equilibrium constant for ligand binding. If this agrees with the equilibrium constant found as the EC50 for binding at equilibrium, this is taken as validation of the measured rates. This is correct only when binding produces no conformation change in the receptor, and ligand binding follows a single exponential time course. Here, we investigate a simple 3 state model in which binding is followed by a conformation change in the receptor. Three special cases of this model in which the time course of onset and offset of ligand binding are close to being single exponentials are analysed. These cases are (1) when binding is much faster than the conformation change, (2) when the conformation change is much faster than binding, and (3) when the rates of ligand dissociation and receptor activation are both fast. It is concluded that the measured rates will often yield an estimate of the equilibrium constant for ligand binding that is close to the effective, or macroscopic, equilibrium constant, the EC50 found by measuring binding at equilibrium, which depends on both of the underlying microscopic equilibrium constants describing ligand binding and the conformation change. The exception to this conclusion is the case when binding is much faster than the subsequent conformation change, though the estimate of the equilibrium constant for ligand binding still depends on both of the underlying microscopic equilibrium constants.",
-      "published": "2026-09-01",
-      "updated": "2026-09-02",
-      "categories": [
-        "q-bio.QM"
-      ],
-      "primaryCategory": "q-bio.QM",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01228v2",
-      "arxivUrl": "http://arxiv.org/abs/2609.01228v2",
-      "doi": null
-    },
-    {
-      "id": "2609.01133",
-      "title": "Scalable Inversion of Contests with Correlated Performances, Including Softmax and Multinomial Probit",
-      "authors": [
-        "Peter Cotton"
-      ],
-      "abstract": "Multinomial probit choice probabilities over n alternatives are Gaussian orthant integrals, computed by simulation for thirty years, one expensive integral per alternative. Inversion, which is to say determining item attractiveness consistent with a prescribed choice probability vector, is even more difficult and has been considered impractical for correlated contests when n is large. Yet here, for families lying within a grammar including factor, block and hierarchical covariance structures, we exhibit a calibration tested at n = 1,000,000 reproducing probabilities to very high accuracy, even in the extreme tail. We must return to much smaller problems for any performance comparison to be possible due to limitations of the prior art. The Geweke-Hajivassiliou-Keane simulator is the standard (and still appropriate for high rank) but is two hundred times slower already at n = 200, and its measured cost grows roughly as n^2.8 while ours is linear. Furthermore our approach applies to any continuous performance distributions within reason: the Thurstone-Mosteller model families thereby become a practical alternative to logit at modern scale.",
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "categories": [
-        "stat.ME",
-        "q-fin.MF",
-        "stat.CO",
-        "stat.OT"
-      ],
-      "primaryCategory": "stat.ME",
-      "pdfUrl": "https://arxiv.org/pdf/2609.01133v1",
-      "arxivUrl": "http://arxiv.org/abs/2609.01133v1",
-      "doi": null
     }
   ],
   "metadata": {
-    "lastUpdated": "2026-09-06T04:18:00.974Z",
+    "lastUpdated": "2026-09-07T04:16:56.067Z",
     "totalPapers": 50,
     "categories": [
       "stat.ME",
@@ -994,6 +996,6 @@
       "econ.EM",
       "q-bio.QM"
     ],
-    "queryDate": "2026-09-06"
+    "queryDate": "2026-09-07"
   }
 }
